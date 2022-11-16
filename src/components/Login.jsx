@@ -82,8 +82,8 @@ const Login = () => {
                 </div>
                 <button className="btn btn-primary button" type="submit">Masuk</button>
                 <p className="mt-3">
-                    Belum memiliki akun?
-                    <Link to="/register" className="text-decoration-none heading">Daftar</Link>
+                    Belum memiliki akun? 
+                    <Link to="/register" className="text-decoration-none heading"> Daftar</Link>
                 </p>
             </form>
             </div>
