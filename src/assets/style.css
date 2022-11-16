@@ -1,0 +1,64 @@
+:root {
+    --primaryColor: #4E93FA;
+    --headingColor:#29325D;
+    --headingFont :'Lato', sans-serif;
+    --bodyFont:'Poppins', sans-serif;
+}
+h1, .heading {
+    font-family: var(--headingFont) !important;
+    font-weight: bold;
+    color: var(--headingColor) !important;
+}
+p {
+    color: var(--headingColor) !important;
+}
+span {
+    font-weight: bold;
+    font-family: var(--headingFont);
+}
+
+.button {
+    background-color: var(--primaryColor) !important;
+    border: 1px solid var(--primaryColor) !important;
+    color: white !important;
+}
+.button:hover {
+    background-color: white !important;
+    color: var(--primaryColor) !important;
+}
+.test {
+    border: 1px solid black;
+}
+.about, .program-disab {
+    background-color: #F9FBFF;
+}
+.image-pt {
+    width: 15%;
+}
+.a {
+    color: white;
+}
+a:hover {
+    color: var(--primaryColor);
+}
+footer > * {
+    color: var(--headingColor);
+}
+
+/*  */
+/* footer {
+    background-color: var(--primaryColor);
+} */
+@media only screen and (max-width: 576px) {
+    .button {
+        width: 100% !important;
+    }
+    .about .capt {
+        width: 100% !important;
+    }
+}
+
+.campaign-logo{
+    width: 30px;
+    margin-right: 15px;
+}
