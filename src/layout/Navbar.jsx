@@ -7,6 +7,8 @@ import "./../assets/style.css"
 const Navbar = () => {
 
   const user = useSelector( store => store.user.data )
+  console.log(localStorage.length)
+  console.log(user)
 
   return (
     <nav className="navbar navbar-light shadow-sm px-3">
@@ -14,6 +16,12 @@ const Navbar = () => {
         <h1><Link className="navbar-brand" to="/">AYO RELIEVE</Link></h1>
         
         <div className="d-md-block d-lg-block">
+          {/* {localStorage.length == 0 ?  <Link to="/login" className="btn button">
+              Masuk
+            </Link> :     <Link to="/logout" className="btn button" type="button">
+              Logout
+            </Link>} */}
+          
           { user == null && 
             <Link to="/login" className="btn button">
               Masuk
@@ -24,9 +32,9 @@ const Navbar = () => {
               Logout
             </Link>
           }
-          {<Link to="/profile" className="profile">
+          <Link to="/profile" className={user==null ? "d-none" : "profile"}>
             <img src={Icon} alt="..." className='profileImage'/>
-          </Link> }
+          </Link>
         </div>
       </div>
     </nav>
