@@ -36,6 +36,7 @@ const Login = () => {
             localStorage.setItem('Email', user.email)
             localStorage.setItem('UserID', user.id)
             localStorage.setItem('CampaignJoined', user.campaign)
+            localStorage.setItem ('Status', "Logged in")
             console.log('login sukses')
             navigate('/')
             alert("Login sukses!");
