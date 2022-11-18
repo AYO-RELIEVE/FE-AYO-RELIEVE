@@ -28,9 +28,9 @@ const HalamanProfile = () => {
                 Profile
             </h1>
             <img src={Icon} alt="..."/>
-            <h4>Email : {localStorage.getItem('Email')}</h4>
+            <h4>{localStorage.getItem('Email')}</h4>
             <h4>User ID : {localStorage.getItem('UserID')}</h4>
-            <h4>Campaign join : {localStorage.getItem('CampaignJoined')}</h4>
+            {/* <h4>Campaign join : {localStorage.getItem('CampaignJoined')}</h4> */}
         </div>
     </div>
 </section>
