@@ -6,7 +6,8 @@ import "./../assets/style.css";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user.data);
-  console.log(user)
+  const isLogin = localStorage.getItem("Email")
+  // console.log(user)
 
   return (
     <nav class="navbar navbar-expand-lg avbar-light shadow-sm px-3">
@@ -17,7 +18,8 @@ const Navbar = () => {
           </Link>
         </h1>
 
-        {user == null && (
+        {isLogin == null && (
+        // {(user == null || isLogin == null) && (
           <div className="d-md-block d-lg-block">
             <Link to="/login" className="btn button">
               Masuk
@@ -25,7 +27,8 @@ const Navbar = () => {
           </div>
         )}
 
-        {user !== null && (
+        {isLogin != null && (
+        // {(user != null || isLogin != null) && (
           <>
             {/* <button
           class="navbar-toggler p-0 profile"

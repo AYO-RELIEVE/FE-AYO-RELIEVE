@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import "./../assets/style.css";
 import Card from "./Card";
+import "./../assets/style.css";
 
 const AllProgram = () => {
   const [program, setProgram] = useState([]);
@@ -21,17 +20,13 @@ const AllProgram = () => {
   }, []);
 
   const filterBySearch = (event) => {
-    // Access input value
     const query = event.target.value;
-    // Create copy of item list
     var updatedList = [...program];
-    // Include all elements which includes the search query
     updatedList = updatedList.filter((item) => {
       return (
         item.nama_program.toLowerCase().indexOf(query.toLowerCase()) !== -1
       );
     });
-    // Trigger render with updated values
     setFilteredProgram(updatedList);
   };
 
