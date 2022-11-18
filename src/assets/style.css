@@ -33,7 +33,7 @@ span {
     background-color: #F9FBFF;
 }
 .image-pt {
-    width: 15%;
+    width: 5%;
 }
 .a {
     color: white;
@@ -61,4 +61,18 @@ footer > * {
 .campaign-logo{
     width: 30px;
     margin-right: 15px;
+}
+
+.profile {
+    width: 50px;
+}
+
+.profileImage{
+    width: 70px;
+}
+
+.halamanProfile {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
