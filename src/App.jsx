@@ -7,6 +7,7 @@ import Register from "./components/Register"
 import AllProgram from "./components/AllProgram"
 import DetailProgram from "./components/DetailProgram"
 import Logout from "./components/Logout"
+import HalamanProfile from "./components/HalamanProfile"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/allprogram" element={<AllProgram />} />
         <Route path="/detailprogram/:id" element={<DetailProgram />} />
         <Route path="/logout" element={<Logout/>}/>
+        <Route path="/profile" element={<HalamanProfile/>}/>
       </Route>
     </Routes>
   )
