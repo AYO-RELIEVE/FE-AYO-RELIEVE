@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import Icon from "../assets/Icon.png"
+import "./../assets/style.css"
 
 const Navbar = () => {
 
@@ -22,6 +24,9 @@ const Navbar = () => {
               Logout
             </Link>
           }
+          {<Link to="/profile" className="profile">
+            <img src={Icon} alt="..." className='profileImage'/>
+          </Link> }
         </div>
       </div>
     </nav>
