@@ -7,7 +7,6 @@ import "./../assets/style.css";
 const Navbar = () => {
   const user = useSelector((store) => store.user.data);
   const isLogin = localStorage.getItem("Email")
-  // console.log(user)
 
   return (
     <nav class="navbar navbar-expand-lg avbar-light shadow-sm px-3">

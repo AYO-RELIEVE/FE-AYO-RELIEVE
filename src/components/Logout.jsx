@@ -7,17 +7,10 @@ const Logout = () => {
 
     const dispatch = useDispatch()
   
-    // Menghapus token dri LS
+    // Menghapus token dri LocalStorage
     localStorage.clear();
-    // localStorage.removeItem('Email')
-    // localStorage.removeItem('sessionId')
-    // localStorage.removeItem('sessionName')
-    // localStorage.removeItem('sessionCity')
-    // localStorage.removeItem('sessionImage')
-    // localStorage.removeItem('sessionAddress')
-    // localStorage.removeItem('sessionPhone')
     
-    // Mengupdate user store jadi NULL
+    // Update user store jadi NULL
     dispatch( userSlice.actions.removeUser() )
   
     return (  
