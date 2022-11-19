@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 
 const DetailProgram = () => {
 
-    const [campaignJoin, setCampaignJoin] = useState(localStorage.getItem("CampaignJoined"))
     const params = useParams()
+    const navigate = useNavigate()
+    const [campaignJoin, setCampaignJoin] = useState(localStorage.getItem("CampaignJoined"))
     const [program, setProgram] = useState(null)
       
     useEffect(() => {
@@ -37,73 +37,17 @@ const DetailProgram = () => {
             })
         
             if (response.ok) {
-                console.log('Anda berhasil bergabung dalam kegiatan.')
                 setCampaignJoin(program.id)
                 localStorage.setItem('CampaignJoined', program.id)
                 alert("Anda berhasil bergabung dalam kegiatan.");
             } else {
-                console.log('Anda gagal bergabung dalam kegiatan.')
                 throw new Error(`HTTP error. Status ${response.status}`)
             }
         } else {
             alert('Anda harus login lebih dahulu!')
-            // window.location.reload()
+            navigate('/login')
         }
     }
-    
-    // const joinCampaign = () => {
-    //     if (localStorage.getItem('Email')){
-    //         const idUser = localStorage.getItem('UserID')
-    //         const postData = {
-    //             campaign: id
-    //         }
-    //         let response = fetch(`https://634e4141f34e1ed826869202.mockapi.io/users/${idUser}`, {
-    //             method: 'PUT',
-    //             body: JSON.stringify(postData),
-    //             headers: { "Content-type": "application/json" }
-    //         })
-        
-    //         if (response.ok) {
-    //             console.log('Anda berhasil bergabung dalam kegiatan.')
-    //             alert("Anda berhasil bergabung dalam kegiatan.");
-    //             localStorage.setItem('CampaignJoined', id)
-    //             navigate('/')
-    //         } else {
-    //             console.log('Anda gagal bergabung dalam kegiatan.')
-    //             throw new Error(`HTTP errorz. Status ${response.status}`)
-    //         }
-    //     } else {
-    //         alert('Anda harus login lebih dahulu!')
-    //         window.location.reload()
-    //     }
-    // }
-    
-    // const joinCampaign = async(idCampaign) => {
-    //     if (localStorage.getItem('Email')){
-    //         const idUser = localStorage.getItem('UserID')
-    //         const postData = {
-    //             campaign: idCampaign
-    //         }
-    //         let response = await fetch(`https://634e4141f34e1ed826869202.mockapi.io/users/${idUser}`, {
-    //             method: 'PUT',
-    //             body: JSON.stringify(postData),
-    //             headers: { "Content-type": "application/json" }
-    //         })
-        
-    //         if (response.ok) {
-    //             console.log('Anda berhasil bergabung dalam kegiatan.')
-    //             alert("Anda berhasil bergabung dalam kegiatan.");
-    //             localStorage.setItem('CampaignJoined', idCampaign)
-    //             window.location.reload()
-    //         } else {
-    //             console.log('Anda gagal bergabung dalam kegiatan.')
-    //             throw new Error(`HTTP error. Status ${response.status}`)
-    //         }
-    //     } else {
-    //         alert('Anda harus login lebih dahulu!')
-    //         window.location.reload()
-    //     }
-    // }
     
     return (
         <>
@@ -136,7 +80,6 @@ const DetailProgram = () => {
                                 </div>
                                 <div className="button-joined">
                                     {
-                                        // (program.id == localStorage.getItem("CampaignJoined")) &&
                                         (program.id == campaignJoin) &&
                                             <div>
                                                 <button disabled className="btn button mt-2 mt-lg-0">
@@ -145,12 +88,9 @@ const DetailProgram = () => {
                                             </div>
                                     }
                                     {
-                                        // (program.id != localStorage.getItem("CampaignJoined")) &&
                                         (program.id != campaignJoin) &&
                                             <div>
-                                                {/* <button className="btn button mt-2 mt-lg-0" onClick={joinCampaign(program.id)}> */}
                                                 <button className="btn button mt-2 mt-lg-0" onClick={joinCampaign}>
-                                                {/* <button className="btn button mt-2 mt-lg-0"> */}
                                                     Join Program
                                                 </button>
                                             </div>
