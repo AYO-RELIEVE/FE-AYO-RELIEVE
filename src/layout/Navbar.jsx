@@ -9,8 +9,8 @@ const Navbar = () => {
   const isLogin = localStorage.getItem("Email")
 
   return (
-    <nav class="navbar navbar-expand-lg avbar-light shadow-sm px-3">
-      <div class="container-sm container">
+    <nav className="navbar navbar-expand-lg avbar-light shadow-sm px-3">
+      <div className="container-sm container">
         <h1>
           <Link className="navbar-brand" to="/">
             AYO RELIEVE
@@ -42,13 +42,13 @@ const Navbar = () => {
             <img src={Icon} alt="..." className="profileImage" />{" "}
           </span>
         </button> */}
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <span>Profile</span>
             </div>
 
-            <div class=" dropdown " id="dropdown">
+            <div className=" dropdown " id="dropdown">
               <a
-                class="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -56,13 +56,13 @@ const Navbar = () => {
               >
                 <img src={Icon} alt="..." className="profileImage" />{" "}
               </a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-item">
+              <ul className="dropdown-menu">
+                <li className="dropdown-item">
                   <Link to="/profile" className="btn p-0" type="button">
                     Profile
                   </Link>
                 </li>
-                <li class="dropdown-item">
+                <li className="dropdown-item">
                   <Link to="/logout" className="btn p-0" type="button">
                     Logout
                   </Link>
@@ -73,34 +73,6 @@ const Navbar = () => {
         )}
       </div>
     </nav>
-    // <nav className="navbar navbar-light shadow-sm px-3">
-    //   <div className="container-sm container">
-    //     <h1><Link className="navbar-brand" to="/">AYO RELIEVE</Link></h1>
-
-    //     <div className="d-md-block d-lg-block">
-    //       {/* {localStorage.length == 0 ?  <Link to="/login" className="btn button">
-    //           Masuk
-    //         </Link> :     <Link to="/logout" className="btn button" type="button">
-    //           Logout
-    //         </Link>} */}
-
-    //       { user == null &&
-    //         <Link to="/login" className="btn button">
-    //           Masuk
-    //         </Link>
-    //       }
-    //       { user != null &&
-    //         <Link to="/logout" className="btn button" type="button">
-    //           Logout
-    //         </Link>
-    //       }
-    //       <Link to="/profile" className={user==null ? "d-none" : "profile"}>
-    //         <img src={Icon} alt="..." className='profileImage'/>
-    //         <span className='text-decoration-none'>{user.username}</span>
-    //       </Link>
-    //     </div>
-    //   </div>
-    // </nav>
   );
 };
 

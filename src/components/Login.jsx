@@ -58,7 +58,7 @@ const Login = () => {
             <img src={Together} className="w-50" alt="" />
             <form action="" onSubmit={handleSubmit} className="w-100 px-5">
                 <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Email</label>
+                <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
                 <input
                     type="email" 
                     value={email} 
@@ -72,7 +72,7 @@ const Login = () => {
                 </div>
                 </div>
                 <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">Kata Sandi</label>
+                <label htmlFor="exampleInputPassword1" className="form-label">Kata Sandi</label>
                 <input
                     type="password" 
                     value={password} 
