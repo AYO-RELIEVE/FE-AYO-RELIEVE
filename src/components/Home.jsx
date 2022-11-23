@@ -25,7 +25,6 @@ const Home = () => {
     <>
       <section className="container text-md-start py-5 py-md-0 px-md-0">
         <div className="container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
-          <p>test</p>
           <div className="order-2 order-md-1">
             <h1 className="fw-bold">
               Empowering Communities. Relieving the problems.
