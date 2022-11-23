@@ -13,6 +13,7 @@ import PrivateLayout from "./layout/PrivateLayout"
 function App() {
 
   return (
+    // changes
     <Routes>
       {/* Public Route */}
       <Route path="/" element={<Layout />}>
