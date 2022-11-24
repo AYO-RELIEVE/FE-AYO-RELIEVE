@@ -3,54 +3,76 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./../assets/style.css";
+import axios, { Axios } from "axios";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [noHp, setNoHp] = useState("");
-//   const [gender, setGender] = useState("")
-  const [job,setJob] = useState("")
-  const [address, setAddress] = useState("")
+  const [gender, setGender] = useState("");
+  const [profession, setProfession] = useState("");
+  const [date_of_birth, setDate_of_birth] = useState("");
+  const [status, setStatus] = useState("applicant");
+  const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [data, setData] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    signUp(name,noHp, job, address ,email, username, password);
+    axios;
+    setData({
+      name,
+      noHp,
+      gender,
+      profession,
+      date_of_birth,
+      status,
+      address,
+      email,
+      username,
+      password,
+    });
+    console.log(data);
+    setName("");
+    setNoHp("");
+    setGender("");
+    setProfession("");
+    setDate_of_birth("");
+    setAddress("");
+    setEmail("");
+    setUsername("");
+    setPassword("");
+    signUp();
   };
 
-  async function signUp(email, username, password) {
-    if (email == "" || username == "" || password == "") {
-      console.log("data tidak boleh kosong");
-    } else {
-      const postData = {
-        email: email,
-        username: username,
-        password: password,
-      };
-      let response = await fetch(
-        "https://634e4141f34e1ed826869202.mockapi.io/users",
-        {
-          method: "POST",
-          body: JSON.stringify(postData),
-          headers: { "Content-type": "application/json" },
-        }
-      );
-
-      if (response.ok) {
-        console.log("register sukses");
-        navigate("/login");
-        alert("Registrasi sukses! Silahkan masukan data anda.");
-      } else {
-        console.log("register gagal");
-        alert("Registrasi gagal! Ulangi proses!.");
-        throw new Error(`HTTP error. Status ${response.status}`);
-      }
-    }
-  }
+ async function signUp() {
+    const dataRegist = {
+      name,
+      noHp,
+      gender,
+      profession,
+      date_of_birth,
+      status,
+      address,
+      email,
+      username,
+      password,
+    };
+    console.log(dataRegist);
+    let result = await fetch("https://ayo-relieve.osorateam.com/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify(dataRegist),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json()
+    console.log("result", result)
+  };
 
   return (
     <section className="">
@@ -68,7 +90,10 @@ const Register = () => {
           <form action="" onSubmit={handleSubmit} className="w-100 px-5">
             {/* /// Nama Lengkap //// */}
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
                 Nama Lengkap <span className="p-0 m-0 text-danger">*</span>
               </label>
               <input
@@ -83,49 +108,57 @@ const Register = () => {
             </div>
             {/* No Hp */}
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
                 Nomor Handphone <span className="p-0 m-0 text-danger">*</span>
               </label>
               <input
                 type="tel"
                 className="form-control"
-                id="handphone"
+                id="noHp"
                 value={noHp}
                 onChange={(e) => setNoHp(e.target.value)}
                 placeholder="Nomor Handphone"
                 required
               />
+              <div className="txt-ex my-2 px-1">Contoh: 081234567891</div>
             </div>
-            {/* Jenis Kelamin */}
-            {/* <div className="mb-3">
-              <label for="exampleInputEmail1" className="form-label fw-bold">
-                Jenis Kelamin <span className="p-0 m-0 text-danger">*</span>
+            {/* Tempat tanggal lahir */}
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Tanggal Lahir <span className="p-0 m-0 text-danger">*</span>
               </label>
-              <div className="d-flex gap-5">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
-                  />
-                  <label className="form-check-label" for="flexCheckDefault">
-                    Laki-Laki
-                  </label>
-                </div>
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="flexCheckChecked"
-                  />
-                  <label class="form-check-label" for="flexCheckChecked">
-                    Perempuan
-                  </label>
-                </div>
-              </div>
-            </div> */}
+              <input
+                type="date"
+                value={date_of_birth}
+                onChange={(e) => setDate_of_birth(e.target.value)}
+                className="form-control"
+                id="date_of_birth"
+                placeholder="Tanggal Lahir"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Nomor Handphone <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="">Jenis Kelamin</option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </select>
+            </div>
+
             {/* Pekerjaan */}
             <div className="mb-3">
               <label className="form-label fw-bold">
@@ -133,16 +166,16 @@ const Register = () => {
               </label>
               <input
                 type="text"
-                value={job}
-                onChange={(e) => setJob(e.target.value)}
+                value={profession}
+                onChange={(e) => setProfession(e.target.value)}
                 className="form-control"
-                id="job"
+                id="profession"
                 placeholder="Pekerjaan"
                 required
               />
             </div>
             {/* Address */}
-             <div className="mb-3">
+            <div className="mb-3">
               <label className="form-label fw-bold">
                 Alamat <span className="p-0 m-0 text-danger">*</span>
               </label>
@@ -156,9 +189,13 @@ const Register = () => {
                 required
               />
             </div>
+            {/* Married status */}
             {/* email */}
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label  fw-bold">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label  fw-bold"
+              >
                 Alamat Email <span className="p-0 m-0 text-danger">*</span>
               </label>
               <input
@@ -173,8 +210,11 @@ const Register = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label fw-bold">
-                Username  <span className="p-0 m-0 text-danger">*</span>
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Username <span className="p-0 m-0 text-danger">*</span>
               </label>
               <input
                 type="text"
@@ -188,7 +228,10 @@ const Register = () => {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label fw-bold">
+              <label
+                htmlFor="exampleInputPassword1"
+                className="form-label fw-bold"
+              >
                 Kata Sandi <span className="p-0 m-0 text-danger">*</span>
               </label>
               <input
