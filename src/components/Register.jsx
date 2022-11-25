@@ -58,7 +58,7 @@ const Register = () => {
             >
             <img src={Together} className="w-50" alt="" />
             <form action="" onSubmit={handleSubmit} className="w-100 px-5">
-                <div className="mb-3">
+                <div className="email">
                 <label for="exampleInputEmail1" className="form-label">Alamat Email</label>
                 <input
                     type="email" 
@@ -74,7 +74,7 @@ const Register = () => {
                     We'll never share your email with anyone else.
                 </div>
                 </div>
-                <div className="mb-3">
+                <div className="nama">
                 <label for="exampleInputEmail1" className="form-label">Username</label>
                 <input
                     type="text" 
@@ -87,7 +87,7 @@ const Register = () => {
                     required
                 />
                 </div>
-                <div className="mb-3">
+                <div className="sandi">
                 <label for="exampleInputPassword1" className="form-label">Kata Sandi</label>
                 <input
                     type="password" 
