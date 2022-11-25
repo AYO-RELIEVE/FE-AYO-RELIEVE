@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import userSlice from '../redux/user'
 import './../assets/style.css'
+import Footer from '../layout/Footer'
 
 const Login = () => {
     
@@ -13,9 +14,9 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
     
-      signIn(email, password)
+    signIn(email, password)
     };
 
     async function signIn(email, password) { 
@@ -51,18 +52,19 @@ const Login = () => {
         <div className="row mt-5">
             <h1 className="text-center">
             <Link to="/" className="text-decoration-none heading">AYO.RELIEVE</Link>
+            {/* <img src={Together} className="img-login" alt="" /> */}
             </h1>
         </div>
-        <div className="row">
+        <div className="rowform">
             <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
-            <img src={Together} className="w-50" alt="" />
             <form action="" onSubmit={handleSubmit} className="w-100 px-5">
-                <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+                <div className="form-label">
+                <label htmlFor="exampleInputEmail1" className="label">Email</label>
                 <input
                     type="email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
                     className="form-control"
                     aria-describedby="emailHelp"
                     required
@@ -71,18 +73,21 @@ const Login = () => {
                     We'll never share your email with anyone else.
                 </div>
                 </div>
-                <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">Kata Sandi</label>
+                <div className="form-label1">
+                <label htmlFor="exampleInputPassword1" className="label">Kata Sandi</label>
                 <input
                     type="password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
                     className="form-control"
                     id="password"
                 />
                 </div>
+                <div className='sign-in'>
                 <button className="btn btn-primary button" type="submit">Masuk</button>
-                <p className="mt-3">
+                </div>
+                <p className="pendaftaran">
                     Belum memiliki akun? 
                     <Link to="/register" className="text-decoration-none heading"> Daftar</Link>
                 </p>
