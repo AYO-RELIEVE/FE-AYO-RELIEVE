@@ -4,6 +4,13 @@
   --headingFont: "Lato", sans-serif;
   --bodyFont: "Poppins", sans-serif;
 }
+
+/* Register */ 
+.txt-ex {
+  font-size: 12px!important;
+  color: #5a5a5a!important;
+
+}
 h1,
 .heading {
   font-family: var(--headingFont) !important;
@@ -60,6 +67,10 @@ footer > * {
   #navbarSupportedContent {
     visibility: visible;
   }
+  .txt {
+    display: block!important;
+  }
+
 }
 
 .campaign-logo {
