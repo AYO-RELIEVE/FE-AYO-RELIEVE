@@ -1,57 +1,51 @@
 import React, { useState } from "react";
 import Together from "./../assets/Together-pana.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./../assets/style.css";
+import swal from "sweetalert";
 import axios, { Axios } from "axios";
 
-const Register = () => {
+const RegisterApplicant = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [noHp, setNoHp] = useState("");
+  const [phone_number, setPhone_number] = useState("");
   const [gender, setGender] = useState("");
   const [profession, setProfession] = useState("");
   const [date_of_birth, setDate_of_birth] = useState("");
   const [status, setStatus] = useState("applicant");
   const [address, setAddress] = useState("");
+  let [disability, setDisability] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState({});
-
+  if (disability === "true") {
+    disability = true;
+  } else if (disability === "false") {
+    disability = false;
+  } else {
+    disability = "";
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios;
-    setData({
-      name,
-      noHp,
-      gender,
-      profession,
-      date_of_birth,
-      status,
-      address,
-      email,
-      username,
-      password,
-    });
-    console.log(data);
-    setName("");
-    setNoHp("");
-    setGender("");
-    setProfession("");
-    setDate_of_birth("");
-    setAddress("");
-    setEmail("");
-    setUsername("");
-    setPassword("");
+    // setName("");
+    // setPhone_number("");
+    // setGender("");
+    // setProfession("");
+    // setDate_of_birth("");
+    // setAddress("");
+    // setDisability("")
+    // setEmail("");
+    // setUsername("");
+    // setPassword("");
     signUp();
   };
 
- async function signUp() {
+  async function signUp() {
     const dataRegist = {
       name,
-      noHp,
+      phone_number,
       gender,
       profession,
       date_of_birth,
@@ -60,19 +54,39 @@ const Register = () => {
       email,
       username,
       password,
+      disability,
     };
-    console.log(dataRegist);
-    let result = await fetch("https://ayo-relieve.osorateam.com/api/auth/register", {
-      method: "POST",
-      body: JSON.stringify(dataRegist),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    result = await result.json()
-    console.log("result", result)
-  };
+    // console.log(dataRegist);
+    let result = await fetch(
+      "https://ayo-relieve.osorateam.com/api/auth/register",
+      {
+        method: "POST",
+        body: JSON.stringify(dataRegist),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    // console.log("result", result)
+    // console.log(result)
+    const res = await result.json();
+    if (res.message == "Register Success") {
+      swal({
+        title: "Registrasi Berhasil!",
+        icon: "success",
+        button: "OK!",
+      });
+      navigate('/login')
+    } else if (res.message !== "Register Success") {
+      swal({
+        title: "Registrasi Gagal!",
+        text: res.message,
+        icon: "error",
+        button: "OK"
+      });
+    }
+  }
 
   return (
     <section className="">
@@ -86,7 +100,7 @@ const Register = () => {
       <div className="row">
         <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
           <img src={Together} className="w-50" alt="" />
-          <h3 className="fw-bold mb-3">Daftar</h3>
+          <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
           <form action="" onSubmit={handleSubmit} className="w-100 px-5">
             {/* /// Nama Lengkap //// */}
             <div className="mb-3">
@@ -118,8 +132,8 @@ const Register = () => {
                 type="tel"
                 className="form-control"
                 id="noHp"
-                value={noHp}
-                onChange={(e) => setNoHp(e.target.value)}
+                value={phone_number}
+                onChange={(e) => setPhone_number(e.target.value)}
                 placeholder="Nomor Handphone"
                 required
               />
@@ -145,16 +159,17 @@ const Register = () => {
                 htmlFor="exampleInputEmail1"
                 className="form-label fw-bold"
               >
-                Nomor Handphone <span className="p-0 m-0 text-danger">*</span>
+                Jenis Kelamin <span className="p-0 m-0 text-danger">*</span>
               </label>
               <select
                 className="form-select"
                 aria-label="Default select example"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
+                required
               >
                 <option value="">Jenis Kelamin</option>
-                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Pria">Pria</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
@@ -189,7 +204,26 @@ const Register = () => {
                 required
               />
             </div>
-            {/* Married status */}
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Apakah anda merupakan penyandang disabilitas?
+                <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                value={disability}
+                onChange={(e) => setDisability(e.target.value)}
+                required
+              >
+                <option value="">Penyandang Disabilitas</option>
+                <option value={true}>Ya</option>
+                <option value={false}>Tidak</option>
+              </select>
+            </div>
             {/* email */}
             <div className="mb-3">
               <label
@@ -257,4 +291,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterApplicant;
