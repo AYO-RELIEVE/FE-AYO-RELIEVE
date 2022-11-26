@@ -3,91 +3,48 @@ import Together from './../assets/Together-pana.svg'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import userSlice from '../redux/user'
+import axios from 'axios'
 import './../assets/style.css'
 
 const Login = () => {
     
-    // const JWT_ORGANIZATION_1 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozLCJuYW1lIjoiWmFraSIsImVtYWlsIjoib3JnYW5pemF0aW9uQGdtYWlsLmNvbSIsImFkZHJlc3MiOiJLbGF0ZW4iLCJwaG90byI6bnVsbCwicGhvbmVfbnVtYmVyIjoiMDg5MzQ3Mjk0ODIzIiwic3RhdHVzIjoib3JnYW5pemF0aW9uIiwiY3JlYXRlZEF0IjoiMjAyMi0xMS0yNFQxODozNToxMy4wMDBaIiwidXBkYXRlZEF0IjoiMjAyMi0xMS0yNFQxODozNToxMy4wMDBaIn0sImlhdCI6MTY2OTMxNTAwOSwiZXhwIjoxNzAwODUxMDA5fQ.lQxQsF0tZ3ihWTo9wVHcBHHZzTf9whLmf4CJBY426iQ;
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-    
-      signIn(email, password)
-    };
+    const handleSubmit = () => {
 
-    async function signIn(email, password) { 
-        const postData = {
+        var data = JSON.stringify({
             email: email,
             password: password
-        }
-        let response = await fetch('http://ayo-relieve.osorateam.com/api/auth/login', postData, {
-            method: 'POST',
-            headers: {
-                // Authorization: `Bearer ${Userfront.accessToken()}`,
-                // Authorization: `Bearer ${JWT_ORGANIZATION_1}`,
-                'content-type': 'appication/json'
-            }
-        })
-        console.log('ini respon: ', response)
-        // if (!response.ok) {
-        //     throw new Error(`HTTP error. Status ${response.status}`)
-        // }
-        
-        // const data = await response.json()
-        // const user = await data.find(d =>
-        //     d.email === email &&
-        //     d.password === password
-        // )
-        // if (user) {
-        //     dispatch(userSlice.actions.addUser({ userData: user }));
-        //     localStorage.setItem('Email', user.email)
-        //     localStorage.setItem('UserID', user.id)
-        //     console.log('login sukses')
-        //     navigate('/')
-        //     alert("Login sukses!");
-        // } else {
-        //     console.log('login gagal')
-        //     alert("Email atau Password salah!");
-        // }
-    }
+        });
 
-    // const formSubmitHandler = (data) => {
-    //     const postData = {
-    //         email: data.email,
-    //         password: data.password
-    //     }
-    //     axios.post('http://ayo-relieve.osorateam.com/api/auth/login', 
-    //         postData,
-    //         {
-    //             headers: {
-    //                 'content-type': 'appication/json'
-    //             }
-    //         }
-    //         )
-    //     .then( res => {
-    //         console.log('ini res', res)
-    //         navigate('/')
-    //         // if (typeof res.data.accessToken !== 'undefined') {
-    //             // Menyimpan token di localstorage
-    //             // localStorage.setItem('webAccessToken', res.data.accessToken)
-    //             // navigate('/')
-    //             // Menyimpan redux di store
-    //             // const user = jwtDecode(res.data.accessToken)
-    //             // axios.get(`http://localhost:4000/users/${user.sub}`)
-    //             // .then( res => {
-    //             //     dispatch( userSlice.actions.addUser({ userData: res.data }))
-    //             //     navigate('/')
-    //             // })
-    //         // }
-    //     }) 
-    //     .catch( err => {
-    //         console.log(err)
-    //     })
-    // }
+        try {
+            var config = {
+                method: 'post',
+                url: 'http://ayo-relieve.osorateam.com/api/auth/login',
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                data : data
+            };
+          
+            axios(config)
+            .then(function (response) {
+                console.log('Respon API:', response)
+                dispatch(userSlice.actions.addUser({ userData: email }));
+                localStorage.setItem('Email', email)
+                localStorage.setItem ('Status', "Logged in")
+                localStorage.setItem ('token', response.data.data.token)
+                alert("Login sukses!");
+                navigate('/')
+            })
+        } catch (error) {
+            console.log(error);
+            alert('Terjadi kesalahan. Cek email atau password anda!')
+        }
+    }
     
     return (
         <section className="">
@@ -99,7 +56,7 @@ const Login = () => {
         <div className="row">
             <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
             <img src={Together} className="w-50" alt="" />
-            <form action="" onSubmit={handleSubmit} className="w-100 px-5">
+            <div className="w-100 px-5">
                 <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
                 <input
@@ -124,12 +81,12 @@ const Login = () => {
                     id="password"
                 />
                 </div>
-                <button className="btn btn-primary button" type="submit">Masuk</button>
+                <button className="btn btn-primary button" onClick={handleSubmit}>Masuk</button>
                 <p className="mt-3">
                     Belum memiliki akun? 
                     <Link to="/register" className="text-decoration-none heading"> Daftar</Link>
                 </p>
-            </form>
+            </div>
             </div>
         </div>
         </section>

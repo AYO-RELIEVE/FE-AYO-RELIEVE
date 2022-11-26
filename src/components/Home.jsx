@@ -8,11 +8,23 @@ import Card from "./Card";
 const Home = () => {
   const [program, setProgram] = useState([]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program`, {})
+  //     .then((res) => {
+  //       setProgram(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   useEffect(() => {
     axios
-      .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program`, {})
+      .get(`http://ayo-relieve.osorateam.com/api/programs`, {})
       .then((res) => {
-        setProgram(res.data);
+        setProgram(res.data.data);
+        console.log('ini res: ', res)
       })
       .catch((err) => {
         console.log(err);
@@ -93,23 +105,40 @@ const Home = () => {
         <div className="container px-4">
           <h1 className="text-center text-md-start">Program Terbaru</h1>
           <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.slice(0, 3).map((programs, index) => {
+            {program.map((programs, index) => {
               return (
-                <Card
-                  key={index}
-                  poster={programs.poster}
-                  name={programs.nama_program}
-                  partnerLogo={programs.partner.logo}
-                  partnerName={programs.partner.nama}
-                  idProgram={programs.id}
-                />
+                <div className="card" style={{ width: "22rem" }} key={index}>
+                  <img
+                    src={Together}  // Sementara pake dummy image karena thumbnail di API belum ada
+                    alt=""
+                    className="card-img-top"
+                  />
+                  <div className="card-body d-flex flex-column gap-2">
+                    <h5 className="card-title">{programs.title}</h5>
+                    <div className="d-flex align-items-center justify-content-between gap-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <img src={Together} className="image-pt" />
+                        <div className="">Partner Name</div>
+                      </div>
+                      <Link to={`/detailprogram/${programs.id}`}>Detail</Link>
+                    </div>
+                  </div>
+                </div>
+                // <Card
+                //   key={index}
+                //   poster={programs.poster}
+                //   name={programs.nama_program}
+                //   partnerLogo={programs.partner.logo}
+                //   partnerName={programs.partner.nama}
+                //   idProgram={programs.id}
+                // />
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="py-5 program-disab">
+      {/* <section className="py-5 program-disab">
         <div className="container px-4">
           <h1 className="text-center text-md-start">
             Disabilitas Bukan Hambatan
@@ -136,7 +165,7 @@ const Home = () => {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
