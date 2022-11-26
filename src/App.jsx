@@ -13,9 +13,6 @@ import RegisterApplicant from "./components/RegisterApplicant"
 function App() {
 
   return (
-    // changes
-    // changes 2
-    // changes 3
     <Routes>
       {/* Public Route */}
       <Route path="/" element={<Layout />}>
