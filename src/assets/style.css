@@ -4,13 +4,6 @@
   --headingFont: "Lato", sans-serif;
   --bodyFont: "Poppins", sans-serif;
 }
-
-/* Register */ 
-.txt-ex {
-  font-size: 12px!important;
-  color: #5a5a5a!important;
-
-}
 h1,
 .heading {
   font-family: var(--headingFont) !important;
@@ -67,10 +60,6 @@ footer > * {
   #navbarSupportedContent {
     visibility: visible;
   }
-  .txt {
-    display: block!important;
-  }
-
 }
 
 .campaign-logo {
@@ -120,58 +109,4 @@ footer > * {
   .halamanProfile {
     margin: 40px auto;
   }
-}
-
-/* login */
-
-.img-login{
-position: absolute;
-width: 400px;
-height: 388px;
-left: 470px;
-top: 90px;
-}
-
-.form-label{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 12px;
-  
-  position: absolute;
-  height: 76px;
-  left: 28px;
-  right: 28px;
-  top: 420px;
-}
-
-.form-label1{
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 12px;
-
-position: absolute;
-height: 76px;
-left: 28px;
-right: 28px;
-top: 510px;
-}
-
-.sign-in{
-position: absolute;
-height: 50px;
-left: 30px;
-right: 50px;
-top: 610px;
-}
-
-.pendaftaran{
-position: absolute;
-height: 50px;
-left: 30px;
-right: 50px;
-top: 660px;
 }
