@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
 
-const Home = () => {
+const HomeOrganization = () => {
   const [program, setProgram] = useState([]);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState([]);
 
   useEffect(() => {
     axios
@@ -19,22 +19,23 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-    axios
-      .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-      })
-      .then((res) => {
-        setStatus(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      axios
+        .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+          headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+          },
+        })
+        .then((res) => {
+          setStatus(res.data.data);
+          console.log('ini status: ', res)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   }, []);
 
   console.log(program);
-  console.log('ini status user: ', status)
+  console.log('status user: ', status);
 
   return (
     <>
@@ -42,7 +43,7 @@ const Home = () => {
         <div className="container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
           <div className="order-2 order-md-1">
             <h1 className="fw-bold">
-              Empowering Communities. Relieving the problems.
+                Organization
             </h1>
             <p className="my-3 text-start">
               Berikan dampak kepada masyarakat yang membutuhkan bantuan melalui
@@ -57,6 +58,35 @@ const Home = () => {
           />
         </div>
       </section>
+
+    <section className="py-5">
+        <div className="container px-4">
+            <h1 className="text-center text-md-start">Program Terbaru</h1>
+            <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
+            {program.map((programs, index) => {
+                return (
+                <div className="card" style={{ width: "22rem" }} key={index}>
+                    <img
+                    src={Together}
+                    alt=""
+                    className="card-img-top"
+                    />
+                    <div className="card-body d-flex flex-column gap-2">
+                    <h5 className="card-title">{programs.title}</h5>
+                    <div className="d-flex align-items-center justify-content-between gap-2">
+                        <div className="d-flex align-items-center gap-2">
+                        <img src={Together} className="image-pt" />
+                        <div className="">Partner Name</div>
+                        </div>
+                        <Link to={`/detailprogram/${programs.id}`}>Detail</Link>
+                    </div>
+                    </div>
+                </div>
+                );
+            })}
+            </div>
+        </div>
+    </section>
 
       <section className="about py-5 py-md-5 px-md-0">
         <div className="container px-4 text-center">
@@ -103,74 +133,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <section className="py-5">
-        <div className="container px-4">
-          <h1 className="text-center text-md-start">Program Terbaru</h1>
-          <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.map((programs, index) => {
-              return (
-                <div className="card" style={{ width: "22rem" }} key={index}>
-                  <img
-                    src={Together}  // Sementara pake dummy image karena thumbnail di API belum ada
-                    alt=""
-                    className="card-img-top"
-                  />
-                  <div className="card-body d-flex flex-column gap-2">
-                    <h5 className="card-title">{programs.title}</h5>
-                    <div className="d-flex align-items-center justify-content-between gap-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <img src={Together} className="image-pt" />
-                        <div className="">Partner Name</div>
-                      </div>
-                      <Link to={`/detailprogram/${programs.id}`}>Detail</Link>
-                    </div>
-                  </div>
-                </div>
-                // <Card
-                //   key={index}
-                //   poster={programs.poster}
-                //   name={programs.nama_program}
-                //   partnerLogo={programs.partner.logo}
-                //   partnerName={programs.partner.nama}
-                //   idProgram={programs.id}
-                // />
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* <section className="py-5 program-disab">
-        <div className="container px-4">
-          <h1 className="text-center text-md-start">
-            Disabilitas Bukan Hambatan
-          </h1>
-          <div className="container-card-disabilitas mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.slice(7, 10).map((programs) => {
-              return (
-                <Card
-                  key={programs.id}
-                  poster={programs.poster}
-                  name={programs.nama_program}
-                  partnerLogo={programs.partner.logo}
-                  partnerName={programs.partner.nama}
-                  idProgram={programs.id}
-                />
-              );
-            })}
-          </div>
-          <div className="mx-auto d-flex justify-content-center mt-5">
-            <button className="btn button shadow-sm">
-              <Link to="/allprogram" className="text-decoration-none a">
-                Lihat Program Lainnya
-              </Link>
-            </button>
-          </div>
-        </div>
-      </section> */}
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default HomeOrganization

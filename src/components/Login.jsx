@@ -12,8 +12,9 @@ const Login = () => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [status, setStatus] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
 
         var data = JSON.stringify({
             email: email,
@@ -30,7 +31,7 @@ const Login = () => {
                 data : data
             };
           
-            axios(config)
+            await axios(config)
             .then(function (response) {
                 console.log('Respon API:', response)
                 dispatch(userSlice.actions.addUser({ userData: email }));
@@ -38,7 +39,20 @@ const Login = () => {
                 localStorage.setItem ('Status', "Logged in")
                 localStorage.setItem ('token', response.data.data.token)
                 alert("Login sukses!");
-                navigate('/')
+            
+                axios.get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                })
+                .then((res) => {
+                    setStatus(res.data.data);
+                    if (res.data.data.status == 'organization') {
+                      navigate('/organization')
+                    } else if (res.data.data.status == 'applicant'){
+                      navigate('/')
+                    }
+                })
             })
         } catch (error) {
             console.log(error);
