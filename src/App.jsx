@@ -2,6 +2,7 @@ import React from "react"
 import { Routes, Route } from 'react-router-dom'
 import Layout from './layout/Layout'
 import Home from './components/Home'
+import HomeOrganization from "./components/HomeOrganization"
 import Login from "./components/Login"
 import AllProgram from "./components/AllProgram"
 import DetailProgram from "./components/DetailProgram"
@@ -17,6 +18,7 @@ function App() {
       {/* Public Route */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="/organization" element={<HomeOrganization />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterApplicant />} />
         <Route path="/allprogram" element={<AllProgram />} />

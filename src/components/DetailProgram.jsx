@@ -11,17 +11,6 @@ const DetailProgram = () => {
     const [campaignJoin, setCampaignJoin] = useState(localStorage.getItem("CampaignJoined"))
     const [program, setProgram] = useState(null)
       
-    // useEffect(() => {
-    //     axios
-    //         .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program/${params.id}`)
-    //         .then((res) => {
-    //             setProgram(res.data);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         });
-    // }, []);
-      
     useEffect(() => {
         axios
             .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`)
@@ -43,7 +32,7 @@ const DetailProgram = () => {
                 url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}/apply`,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             };
             
