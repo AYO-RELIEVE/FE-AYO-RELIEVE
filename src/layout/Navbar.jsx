@@ -7,18 +7,30 @@ import "./../assets/style.css";
 const Navbar = () => {
   const user = useSelector((store) => store.user.data);
   const isLogin = localStorage.getItem("Email")
+  const statusUser = localStorage.getItem("statusUser")
+
+  console.log('status userz: ', statusUser)
 
   return (
     <nav className="navbar navbar-expand-lg avbar-light shadow-sm px-3">
       <div className="container-sm container">
-        <h1>
-          <Link className="navbar-brand" to="/">
-            AYO RELIEVE
-          </Link>
-        </h1>
+
+        {
+          statusUser == "organization" ? 
+          <h1>
+            <Link className="navbar-brand" to="/organization">
+              AYO RELIEVE
+            </Link>
+          </h1>
+          : 
+          <h1>
+            <Link className="navbar-brand" to="/">
+              AYO RELIEVE
+            </Link>
+          </h1>
+        }
 
         {isLogin == null && (
-        // {(user == null || isLogin == null) && (
           <div className="d-md-block d-lg-block">
             <Link to="/login" className="btn button">
               Masuk
@@ -27,21 +39,7 @@ const Navbar = () => {
         )}
 
         {isLogin != null && (
-        // {(user != null || isLogin != null) && (
           <>
-            {/* <button
-          class="navbar-toggler p-0 profile"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span>
-            <img src={Icon} alt="..." className="profileImage" />{" "}
-          </span>
-        </button> */}
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <span>Profile</span>
             </div>
