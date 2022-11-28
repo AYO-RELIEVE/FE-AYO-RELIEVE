@@ -4,10 +4,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
+import Navbar from "../layout/Navbar";
 
 const Home = () => {
   const [program, setProgram] = useState([]);
   const [status, setStatus] = useState("");
+  const programLength = program.length
+  const programLengthStart = program.length-3
 
   useEffect(() => {
     axios
@@ -38,6 +41,7 @@ const Home = () => {
 
   return (
     <>
+      <Navbar/>
       <section className="container text-md-start py-5 py-md-0 px-md-0">
         <div className="container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
           <div className="order-2 order-md-1">
@@ -108,7 +112,7 @@ const Home = () => {
         <div className="container px-4">
           <h1 className="text-center text-md-start">Program Terbaru</h1>
           <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.map((programs, index) => {
+            {program.slice(programLengthStart, programLength).map((programs, index) => {
               return (
                 <div className="card" style={{ width: "22rem" }} key={index}>
                   <img
@@ -169,6 +173,14 @@ const Home = () => {
           </div>
         </div>
       </section> */}
+      
+      <div className="mx-auto d-flex justify-content-center mt-5">
+        <button className="btn button shadow-sm">
+          <Link to="/allprogram" className="text-decoration-none a">
+            Lihat Semua Program
+          </Link>
+        </button>
+      </div>
     </>
   );
 };
