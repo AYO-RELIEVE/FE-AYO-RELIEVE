@@ -60,8 +60,9 @@ const RegisterApplicant = () => {
       }
     );
     // console.log("result", result)
-    // console.log(result)
+    console.log(result)
     const res = await result.json();
+    console.log(res)
     if (res.message == "Register Success") {
       swal({
         title: "Registrasi Berhasil!",
