@@ -37,11 +37,11 @@ span {
 .image-pt {
   width: 5%;
 }
-.a {
-  color: white;
+.link {
+  color: white!important;
 }
-a:hover {
-  color: var(--primaryColor);
+.link:hover {
+  color: #4e93fa!important;
 }
 footer > * {
   color: var(--headingColor);
@@ -103,6 +103,24 @@ footer > * {
 
 .profileNotJoined{
   font-style: italic;
+}
+.btn-type-acc {
+  background-color: #4e93fa;
+  border: 1px solid #4e93fa;
+  width: 150px;
+  height: 300%;
+  color:white;
+}
+.btn-type-acc:hover {
+  border: 1px solid #4e93fa;
+  background-color: white;
+
+}
+.btn-type-acc:hover Link {
+    color: #4e93fa!important;
+}
+.big-margin {
+  margin-bottom: 100px!important;
 }
 
 @media screen and (min-width: 768px) {

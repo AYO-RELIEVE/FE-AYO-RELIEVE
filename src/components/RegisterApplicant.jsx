@@ -30,16 +30,6 @@ const RegisterApplicant = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setName("");
-    // setPhone_number("");
-    // setGender("");
-    // setProfession("");
-    // setDate_of_birth("");
-    // setAddress("");
-    // setDisability("")
-    // setEmail("");
-    // setUsername("");
-    // setPassword("");
     signUp();
   };
 
@@ -177,116 +167,116 @@ const RegisterApplicant = () => {
                 </select>
               </div>
 
-              {/* Pekerjaan */}
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  Pekerjaan <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={profession}
-                  onChange={(e) => setProfession(e.target.value)}
-                  className="form-control"
-                  id="profession"
-                  placeholder="Pekerjaan"
-                  required
-                />
-              </div>
-              {/* Address */}
-              <div className="mb-3">
-                <label className="form-label fw-bold">
-                  Alamat <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="form-control"
-                  id="address"
-                  placeholder="Alamat"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleInputEmail1"
-                  className="form-label fw-bold"
-                >
-                  Apakah anda merupakan penyandang disabilitas?
-                  <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                  value={disability}
-                  onChange={(e) => setDisability(e.target.value)}
-                  required
-                >
-                  <option value="">Penyandang Disabilitas</option>
-                  <option value={true}>Ya</option>
-                  <option value={false}>Tidak</option>
-                </select>
-              </div>
-              {/* email */}
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleInputEmail1"
-                  className="form-label  fw-bold"
-                >
-                  Alamat Email <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-control"
-                  id="email"
-                  placeholder="Email"
-                  aria-describedby="emailHelp"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleInputEmail1"
-                  className="form-label fw-bold"
-                >
-                  Username <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="form-control"
-                  id="username"
-                  placeholder="Username"
-                  aria-describedby="emailHelp"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <label
-                  htmlFor="exampleInputPassword1"
-                  className="form-label fw-bold"
-                >
-                  Kata Sandi <span className="p-0 m-0 text-danger">*</span>
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Password"
-                  className="form-control"
-                  id="password"
-                />
-              </div>
-              <button className="btn btn-primary button">Daftar</button>
-              <p className="mt-3">
-                Sudah memiliki akun?
-                <Link to="/login" className="text-decoration-none heading">
-                  Masuk
-                </Link>
-              </p>
+            {/* Pekerjaan */}
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Pekerjaan <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                value={profession}
+                onChange={(e) => setProfession(e.target.value)}
+                className="form-control"
+                id="profession"
+                placeholder="Pekerjaan"
+                required
+              />
+            </div>
+            {/* Address */}
+            <div className="mb-3">
+              <label className="form-label fw-bold">
+                Alamat <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="form-control"
+                id="address"
+                placeholder="Alamat"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Apakah anda merupakan penyandang disabilitas?
+                <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                value={disability}
+                onChange={(e) => setDisability(e.target.value)}
+                required
+              >
+                <option value="">Penyandang Disabilitas</option>
+                <option value={true}>Ya</option>
+                <option value={false}>Tidak</option>
+              </select>
+            </div>
+            {/* email */}
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label  fw-bold"
+              >
+                Alamat Email <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="email"
+                placeholder="Email"
+                aria-describedby="emailHelp"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Username <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="form-control"
+                id="username"
+                placeholder="Username"
+                aria-describedby="emailHelp"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputPassword1"
+                className="form-label fw-bold"
+              >
+                Kata Sandi <span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="form-control"
+                id="password"
+              />
+            </div>
+            <button className="btn btn-primary button">Daftar</button>
+            <p className="mt-3">
+              Sudah memiliki akun?
+              <Link to="/login" className="text-decoration-none heading mx-1">
+                Masuk
+              </Link>
+            </p>
             </form>
           </div>
         </div>
