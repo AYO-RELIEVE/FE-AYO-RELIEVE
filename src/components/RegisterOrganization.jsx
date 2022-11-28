@@ -52,9 +52,7 @@ const RegisterOrganization = () => {
         },
       }
     );
-    console.log(result)
         const res = await result.json();
-        console.log(res)
     if (res.message == "Register Success") {
       swal({
         title: "Registrasi Berhasil!",
@@ -83,7 +81,7 @@ const RegisterOrganization = () => {
       <div className="row">
         <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
           <img src={Together} className="w-50" alt="" />
-          <h3 className="fw-bold mb-3  txt">Daftar</h3>
+          <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
           <form onSubmit={handleSubmit} className="w-100 px-5">
             {/* Nama Organisasi */}
             <div className="mb-3">

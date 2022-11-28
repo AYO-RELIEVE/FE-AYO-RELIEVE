@@ -11,6 +11,7 @@ import HalamanProfile from "./components/HalamanProfile"
 import PrivateLayout from "./layout/PrivateLayout"
 import RegisterApplicant from "./components/RegisterApplicant"
 import RegisterOrganization from "./components/RegisterOrganization"
+import RegisterTypeAccount from "./components/RegisterTypeAccount"
 
 function App() {
 
@@ -21,7 +22,8 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/organization" element={<HomeOrganization />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<RegisterApplicant />} />
+        <Route path="/register" element={<RegisterTypeAccount />} />
+         <Route path="/register-applicant" element={<RegisterApplicant />} />
         <Route path="/allprogram" element={<AllProgram />} />
         <Route path="/detailprogram/:id" element={<DetailProgram />} />
         <Route path="/logout" element={<Logout/>}/>
