@@ -29,16 +29,6 @@ const RegisterApplicant = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setName("");
-    // setPhone_number("");
-    // setGender("");
-    // setProfession("");
-    // setDate_of_birth("");
-    // setAddress("");
-    // setDisability("")
-    // setEmail("");
-    // setUsername("");
-    // setPassword("");
     signUp();
   };
 
@@ -280,7 +270,7 @@ const RegisterApplicant = () => {
             <button className="btn btn-primary button">Daftar</button>
             <p className="mt-3">
               Sudah memiliki akun?
-              <Link to="/login" className="text-decoration-none heading">
+              <Link to="/login" className="text-decoration-none heading mx-1">
                 Masuk
               </Link>
             </p>

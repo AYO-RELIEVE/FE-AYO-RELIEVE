@@ -10,6 +10,7 @@ import Logout from "./components/Logout"
 import HalamanProfile from "./components/HalamanProfile"
 import PrivateLayout from "./layout/PrivateLayout"
 import RegisterApplicant from "./components/RegisterApplicant"
+import RegisterOrganization from "./components/RegisterOrganization"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/allprogram" element={<AllProgram />} />
         <Route path="/detailprogram/:id" element={<DetailProgram />} />
         <Route path="/logout" element={<Logout/>}/>
+        <Route path="/register-organization" element ={<RegisterOrganization/>}/>
       </Route>
        
        {/* Protected Route */}
