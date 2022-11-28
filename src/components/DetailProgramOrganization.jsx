@@ -108,10 +108,13 @@ const DetailProgramOrganization = () => {
                                     </h6>
                                 </div>
                                 <div className="button-joined d-flex">
-                                    <Link to={`/editprogram/${program.id}`} className="btn button mt-2 mt-lg-0">
+                                    <Link to={`/detailapplicant/${program.id}`} className="btn btn-success mt-2 mt-lg-0 d-flex justify-content-center align-items-center">
+                                        Pendaftar
+                                    </Link>
+                                    <Link to={`/editprogram/${program.id}`} className="btn button mt-2 mt-lg-0 mx-2 d-flex justify-content-center align-items-center">
                                         Edit Program
                                     </Link>
-                                    <button className="btn button mt-2 mt-lg-0 mx-2" onClick={hapusProgram}>
+                                    <button className="btn btn-danger mt-2 mt-lg-0 d-flex justify-content-center align-items-center" onClick={hapusProgram}>
                                         Hapus Program
                                     </button>
                                 </div>

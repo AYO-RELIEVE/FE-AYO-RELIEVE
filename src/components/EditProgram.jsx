@@ -132,7 +132,7 @@ const EditProgram = () => {
                 >
                   Deskripsi Program <span className="p-0 m-0 text-danger">*</span>
                 </label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   id="description"
@@ -140,6 +140,8 @@ const EditProgram = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Deskripsi Program"
                   required
+                  cols="30"
+                  rows="5"
                 />
               </div>
               {/* Ketentuan Program */}
@@ -226,7 +228,7 @@ const EditProgram = () => {
                 />
               </div>
               <Link to={`/detailprogramorganization/${program.id}`} className="btn btn-primary button">Cancel</Link>
-              <button className="btn btn-primary button mx-2" onClick={updatePrograms}>Update Program</button>
+              <button className="btn btn-primary button mx-md-2 my-3 my-md-0" onClick={updatePrograms}>Update Program</button>
             </div>
           </div>
         </div>

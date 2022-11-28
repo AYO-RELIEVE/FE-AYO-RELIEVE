@@ -38,10 +38,23 @@ const DetailProgram = () => {
         axios(config)
         .then(function (response) {
             console.log(response)
+            if (response.status == 200){ 
+                swal({
+                  title: "Anda berhasil mendaftar!",
+                  icon: "success",
+                  button: "Ok",
+                });
+            }
         })
         .catch((error) => {
-            alert(error.response.data.message);
-            console.log(error)
+            console.log('message eroor: ', error)
+            if (error.response.data.message == "You have already applied for this program"){
+                swal({
+                  title: "Anda telah mendaftar program ini.",
+                  icon: "error",
+                  button: "Tutup",
+                });
+            }
         })
     }
     

@@ -15,6 +15,7 @@ import RegisterOrganization from "./components/RegisterOrganization"
 import RegisterTypeAccount from "./components/RegisterTypeAccount"
 import CreateProgram from "./components/CreateProgram"
 import EditProgram from "./components/EditProgram"
+import DetailApplicant from "./components/DetailApplicant"
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/allprogram" element={<AllProgram />} />
         <Route path="/detailprogram/:id" element={<DetailProgram />} />
         <Route path="/detailprogramorganization/:id" element={<DetailProgramOrganization />} />
+        <Route path="/detailapplicant/:id" element={<DetailApplicant />} />
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/register-organization" element ={<RegisterOrganization/>}/>
       </Route>
