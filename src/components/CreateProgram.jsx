@@ -108,7 +108,7 @@ const CreateProgram = () => {
                 >
                   Deskripsi Program <span className="p-0 m-0 text-danger">*</span>
                 </label>
-                <input
+                <textarea
                   type="text"
                   className="form-control"
                   id="description"
@@ -116,6 +116,8 @@ const CreateProgram = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Deskripsi Program"
                   required
+                  cols="30"
+                  rows="5"
                 />
               </div>
               {/* Ketentuan Program */}
