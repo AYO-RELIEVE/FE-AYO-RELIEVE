@@ -9,37 +9,43 @@ const HalamanProfile = () => {
 
     useEffect(() => {
         axios
-            .get(`https://634e4141f34e1ed826869202.mockapi.io/users`, {})
+            .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+                headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+            })
             .then((res) => {
-                setProfile(res.data);
+                console.log(res.data);
             })
             .catch((err) => {
                 console.log(err)
             });
-        axios
-            .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program`, {})
-            .then((res) => {
-                setProgram(res.data);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
+        // axios
+        //     .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program`, {})
+        //     .then((res) => {
+        //         setProgram(res.data);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     });
     }, []);
     
-    console.log(profile)
-    console.log(program)
+    // console.log(profile)
+    // console.log(program)
 
     return(
-        <section className="halamanProfile container text-md-start py-5 py-md-0 px-md-0">
+        <section className="halamanProfile container text-md-start py-5 test py-md-0 px-md-0 mb-5">
             <div className="text-center container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
-                <div className="">
-                    <h1 className="fw-bold">
-                        Profile
-                    </h1>
+                <div className="d-flex flex-column justify-content-center align-items-center ">
                     <img src={Icon} alt="..." className="profilePicture"/>
-                    <h4>{localStorage.getItem('Email')}</h4>
-                    <h4>User ID: {localStorage.getItem('UserID')}</h4>
-                    {program.map((programs) => {
+                    <h4>Muhammad Arya Wirawan</h4>
+                    <div className="status">Bukan Penyandang Disabilitas</div>
+                    <h5>Mahasiswa</h5>
+                    <div>maryawirawan13@gmail.com</div>
+                    <div>
+                        <img src="" alt="" />
+                    </div>
+                    {/* {program.map((programs) => {
                         return (
                             <>
                                 {            
@@ -64,7 +70,7 @@ const HalamanProfile = () => {
                                 Anda belum mendaftar program
                             </div>
                         )
-                    }
+                    } */}
                 </div>
             </div>
         </section>
