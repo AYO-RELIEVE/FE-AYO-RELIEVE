@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Icon from "../assets/Icon.png";
+import Company from "./../assets/Company.jpg"
+import ProfileMan from "./../assets/ProfileMan.jpg"
 import "./../assets/style.css";
 import axios from "axios";
 
@@ -20,7 +22,6 @@ const Navbar = () => {
           })
           .then((res) => {
               setProfile(res.data.data)
-              setDetail(res.data.data.user_applicant_detail)
           })
           .catch((err) => {
               console.log(err)
@@ -75,7 +76,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Icon } alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Company } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">
@@ -105,7 +106,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Icon } alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : ProfileMan } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">

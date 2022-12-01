@@ -12,7 +12,8 @@ const RegisterApplicant = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone_number, setPhone_number] = useState("");
-  const [gender, setGender] = useState("");
+  let [gender, setGender] = useState("");
+  console.log('ini gender: ', gender)
   const [profession, setProfession] = useState("");
   const [photo, setPhoto] = useState("");
   const [date_of_birth, setDate_of_birth] = useState("");
@@ -22,16 +23,11 @@ const RegisterApplicant = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const handlePhoto = (e) => {
     console.log("event :", e);
     setPhoto(e.target.files[0]);
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   signUp();
-  // };
 
   const registerApplicant = () => {
 
@@ -42,6 +38,13 @@ const RegisterApplicant = () => {
     } else {
       disability = "";
     }
+
+    if (gender === true) {
+      gender = "Pria";
+    } else {
+      gender = "Perempuan";
+    }
+
     var dataRegist = new FormData();
     dataRegist.append('name', name);
     dataRegist.append('phone_number', phone_number);
@@ -68,9 +71,21 @@ const RegisterApplicant = () => {
     axios(config)
     .then(function (response) {
       console.log('respon register ', response);
+      swal({
+        title: "Register Berhasil!",
+        icon: "success",
+        button: "Tutup"
+      });
+      navigate('/login')
     })
     .catch(function (error) {
       console.log('respon error ', error);
+      swal({
+        title: "Register Gagal!",
+        text: error.response.data.message[0].message,
+        icon: "error",
+        button: "Tutup"
+      });
     });
   }
 
@@ -114,7 +129,7 @@ const RegisterApplicant = () => {
                   htmlFor="exampleInputEmail1"
                   className="form-label fw-bold"
                 >
-                  Foto Program<span className="p-0 m-0 text-danger">*</span>
+                  Foto Profil<span className="p-0 m-0 text-danger">*</span>
                 </label>
                 <input
                   type="file"
@@ -123,7 +138,7 @@ const RegisterApplicant = () => {
                   // value={image}
                   // onChange={(e) => setImage(e.target.files[0])}
                   onChange={handlePhoto}
-                  placeholder="Foto Program"
+                  placeholder="Foto Profil"
                   required
                 />
               </div>
@@ -176,8 +191,8 @@ const RegisterApplicant = () => {
                   required
                 >
                   <option value="">Jenis Kelamin</option>
-                  <option value="Pria">Pria</option>
-                  <option value="Perempuan">Perempuan</option>
+                  <option value={true}>Pria</option>
+                  <option value={false}>Perempuan</option>
                 </select>
               </div>
 

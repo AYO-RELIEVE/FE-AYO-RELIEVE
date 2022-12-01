@@ -4,7 +4,8 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
-import { BsArrowLeftCircle } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";
+import Company from "./../assets/Company.jpg"
 
 const DetailProgramOrganization = () => {
 
@@ -59,7 +60,7 @@ const DetailProgramOrganization = () => {
               icon: "success",
               button: "OK!",
             });
-            navigate('/organization')
+            navigate('/allprogram')
           })
           .catch(function (error) {
             swal({
@@ -80,16 +81,13 @@ const DetailProgramOrganization = () => {
                 <>
                     <Navbar/>
                     <section className="container text-md-start py-4 py-md-4 px-md-0">
-                        <Link className="buttonBackContainer d-flex" to={`/allprogram`} >
-                            <div className='buttonBackIconContainer'>
-                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
-                            </div>
-                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
-                                Kembali
-                            </div>
-                        </Link>
+                        <div className="buttonKembaliDetailProgramContainer" >
+                            <Link style={{ textDecoration: 'none' }} to={"/allprogram"}  className="buttonKembaliDetailProgram shadow">
+                                <BiArrowBack className="BiArrowBack"/>
+                            </Link>
+                        </div>
                         <div
-                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
+                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row mt-4"
                         >
                             <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
@@ -104,7 +102,7 @@ const DetailProgramOrganization = () => {
                                 </h1>
                                 <div className="d-flex">
                                     <img
-                                        src={Together}
+                                        src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
