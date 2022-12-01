@@ -4,15 +4,18 @@
   --headingFont: "Lato", sans-serif;
   --bodyFont: "Poppins", sans-serif;
 }
+
 h1,
 .heading {
   font-family: var(--headingFont) !important;
   font-weight: bold;
   color: var(--headingColor) !important;
 }
+
 p {
   color: var(--headingColor) !important;
 }
+
 span {
   font-weight: bold;
   font-family: var(--headingFont);
@@ -23,29 +26,41 @@ span {
   border: 1px solid var(--primaryColor) !important;
   color: white !important;
 }
+
 .button:hover {
   background-color: white !important;
   color: var(--primaryColor) !important;
 }
+
 .test {
   border: 1px solid black;
 }
+
 .about,
 .program-disab {
   background-color: #f9fbff;
 }
+
 .image-pt {
-  width: 5%;
+  width: 5% !important;
 }
+
+.img-pt {
+  width: 20px;
+}
+
 .link {
-  color: white!important;
+  color: white !important;
 }
+
 .link:hover {
-  color: #4e93fa!important;
+  color: #4e93fa !important;
 }
-footer > * {
+
+footer>* {
   color: var(--headingColor);
 }
+
 #navbarSupportedContent {
   visibility: hidden;
 }
@@ -54,9 +69,11 @@ footer > * {
   .button {
     width: 100% !important;
   }
+
   .about .capt {
     width: 100% !important;
   }
+
   #navbarSupportedContent {
     visibility: visible;
   }
@@ -84,7 +101,7 @@ footer > * {
   flex-direction: column;
 }
 
-.profilePicture{
+.profilePicture {
   width: 100px;
   margin: 20px 0px;
   padding: 15px;
@@ -92,55 +109,108 @@ footer > * {
   border-radius: 50%;
 }
 
-.profileJoinedCampaign{
+.profileJoinedCampaign {
   display: flex;
 }
 
-.profileJoinedCampaignImage{
+.profileJoinedCampaignImage {
   height: 20px;
   margin-right: 10px;
 }
 
-.profileNotJoined{
+.profileNotJoined {
   font-style: italic;
 }
+
 .btn-type-acc {
   background-color: #4e93fa;
   border: 1px solid #4e93fa;
   width: 150px;
   height: 300%;
-  color:white;
+  color: white;
 }
+
 .btn-type-acc:hover {
   border: 1px solid #4e93fa;
   background-color: white;
 
 }
+
 .btn-type-acc:hover Link {
-    color: #4e93fa!important;
+  color: #4e93fa !important;
 }
+
 .big-margin {
-  margin-bottom: 100px!important;
+  margin-bottom: 100px !important;
 }
 
 .status {
   background-color: #4e93fa;
   border-radius: 20px;
-  width: 100%;
+  /* width: 80%; */
   margin: 10px auto;
-  padding: 3px 0px;
+  padding: 3px 20px;
   color: white;
 }
+
+
 .status-disab {
-    background-color: #12C924;
+  background-color: #12C924;
   border-radius: 20px;
-  width: 100%;
+  /* width: 80%; */
   margin: 10px auto;
-  padding: 3px 0px;
+  padding: 3px 20px;
   color: white;
 }
+
+.status-seleksi-pending {
+  background-color: #4e93fa;
+  border-radius: 20px;
+  width: 70%;
+  padding: 0px 10px;
+  margin: 0;
+}
+
+.status-seleksi-reject {
+  background-color: #dc3545;
+  border-radius: 20px;
+  width: 70%;
+  padding: 0px 10px;
+  margin: 0;
+}
+
+.status-seleksi-approve {
+  background-color: #28a745;
+  border-radius: 20px;
+  width: 70%;
+  padding: 0px 10px;
+  margin: 0;
+}
+
+.active {
+  border-bottom: 2px solid #4e93fa;
+  color: #4e93fa;
+  transition: all 0.5s;
+}
+
+.icon {
+  width: 100%!important;
+  margin: 1rem auto!important;
+  display: block !important;
+}
+
+
+.active:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 768px) {
   .halamanProfile {
     margin: 40px auto;
   }
+  .icon {
+  width: 25%!important;
+  margin: 1rem auto!important;
+  display: block!important;
+}
 }

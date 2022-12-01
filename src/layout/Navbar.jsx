@@ -61,6 +61,11 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="dropdown-item">
+                  <Link to="/my-programs" className="btn p-0" type="button">
+                    My Programs
+                  </Link>
+                </li>
+                <li className="dropdown-item">
                   <Link to="/logout" className="btn p-0" type="button">
                     Logout
                   </Link>
