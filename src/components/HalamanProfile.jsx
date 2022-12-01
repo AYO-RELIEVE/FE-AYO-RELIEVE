@@ -31,7 +31,7 @@ const HalamanProfile = () => {
                 <div className="d-flex flex-column justify-content-center w-100 align-items-center mb-5 ">
                     <img src={Icon} alt="icon-profile" className="profilePicture"/>
                     <h4>{profile.name}</h4>
-                    <div className={detail.disability? ".status-disab" : "status"}>{detail.disability? "Penyandang Disabilitas" : "Bukan Penyandang Disabilitas"}</div>
+                    <div className={detail.disability? "status-disab" : "status"}>{detail.disability? "Penyandang Disabilitas" : "Bukan Penyandang Disabilitas"}</div>
                     <h5>{detail.profession}</h5>
                     <div>{profile.email}</div>
                 </div>
