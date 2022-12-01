@@ -26,7 +26,7 @@ const Login = () => {
         try {
             var config = {
                 method: 'post',
-                url: 'http://ayo-relieve.osorateam.com/api/auth/login',
+                url: 'https://ayo-relieve.osorateam.com/api/auth/login',
                 headers: { 
                   'Content-Type': 'application/json'
                 },
@@ -46,7 +46,7 @@ const Login = () => {
                   button: "OK!",
                 });
             
-                axios.get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+                axios.get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     },

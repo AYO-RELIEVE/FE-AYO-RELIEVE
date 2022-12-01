@@ -25,7 +25,7 @@ const EditProgram = () => {
       
   useEffect(() => {
     axios
-      .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`)
+      .get(`https://ayo-relieve.osorateam.com/api/programs/${params.id}`)
       .then((res) => {
           setProgram(res.data.data)
           setIdProgram(res.data.data.id)
@@ -61,7 +61,7 @@ const EditProgram = () => {
     
     var config = {
       method: 'put',
-      url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+      url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}`,
       headers: { 
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       },

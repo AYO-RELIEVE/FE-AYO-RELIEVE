@@ -37,7 +37,7 @@ const DetailProgram = () => {
 
         var config = {
             method: 'post',
-            url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}/apply`,
+            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/apply`,
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },

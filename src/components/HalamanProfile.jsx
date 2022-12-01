@@ -14,7 +14,7 @@ const HalamanProfile = () => {
 
     useEffect(() => {
         axios
-            .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+            .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
                 headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },

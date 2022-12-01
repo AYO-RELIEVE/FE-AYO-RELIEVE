@@ -15,7 +15,7 @@ const DetailApplicant = () => {
       
     useEffect(() => {
         axios
-            .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`)
+            .get(`https://ayo-relieve.osorateam.com/api/programs/${params.id}`)
             .then((res) => {
                 setProgram(res.data.data);
             })
@@ -23,7 +23,7 @@ const DetailApplicant = () => {
                 console.log(err)
             });
         axios
-            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+            .get(`https://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -39,7 +39,7 @@ const DetailApplicant = () => {
       
     useEffect(() => {
         axios
-            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+            .get(`https://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -56,7 +56,7 @@ const DetailApplicant = () => {
     const handleApprove = (id) => {
         var config = {
             method: 'put',
-            url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}/approve/${id}`,
+            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/approve/${id}`,
             headers: { 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -85,7 +85,7 @@ const DetailApplicant = () => {
     const handleReject = (id) => {
         var config = {
             method: 'put',
-            url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}/reject/${id}`,
+            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/reject/${id}`,
             headers: { 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
