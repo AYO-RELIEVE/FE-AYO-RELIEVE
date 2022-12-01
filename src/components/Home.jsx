@@ -114,9 +114,9 @@ const Home = () => {
           <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
             {program.slice(programLengthStart, programLength).map((programs, index) => {
               return (
-                <div className="card" style={{ width: "22rem" }} key={index}>
+                <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
                   <img
-                    src={Together}  // Sementara pake dummy image karena thumbnail di API belum ada
+                    src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
                     alt=""
                     className="card-img-top"
                   />
@@ -127,10 +127,10 @@ const Home = () => {
                         <img src={Together} className="image-pt" />
                         <div className="">Partner Name</div>
                       </div>
-                      <Link to={`/detailprogram/${programs.id}`}>Detail</Link>
+                      <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'}>Detail</Link>
                     </div>
                   </div>
-                </div>
+                </Link>
                 // <Card
                 //   key={index}
                 //   poster={programs.poster}
@@ -174,9 +174,9 @@ const Home = () => {
         </div>
       </section> */}
       
-      <div className="mx-auto d-flex justify-content-center mt-5">
-        <button className="btn button shadow-sm">
-          <Link to="/allprogram" className="text-decoration-none a">
+      <div className="mx-auto d-flex justify-content-center mt-0">
+        <button className="btn buttonHome shadow-sm">
+          <Link to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
             Lihat Semua Program
           </Link>
         </button>

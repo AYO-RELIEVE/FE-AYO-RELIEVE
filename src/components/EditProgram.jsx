@@ -17,7 +17,8 @@ const EditProgram = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [rules, setRules] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
+  const [image, setImage] = useState("");
+  console.log('ini image: ', image)
   const [qouta, setQouta] = useState();
   const [end_date, setEndDate] = useState("");
   const [announcement_date, setAnnouncementDate] = useState("");
@@ -31,7 +32,7 @@ const EditProgram = () => {
           setTitle(res.data.data.title)
           setDescription(res.data.data.description)
           setRules(res.data.data.rules)
-          setThumbnail(res.data.data.thumbnail)
+          setImage(res.data.data.thumbnail)
           setQouta(res.data.data.qouta)
           setEndDate(res.data.data.end_date)
           setAnnouncementDate(res.data.data.announcement_date)
@@ -39,26 +40,30 @@ const EditProgram = () => {
       .catch((err) => {
           console.log(err)
       });
+      console.log('useeffect JALAN')
   }, []);
 
+  const handleImage = (e) => {
+    console.log("event :", e);
+    setImage(e.target.files[0]);
+  };
+
   const updatePrograms = () => {
-    var data = ({
-      "category_id": idprogram,
-      "title": title,
-      "description": description,
-      "rules": rules,
-      "thumbnail": thumbnail,
-      "qouta": qouta,
-      "end_date": end_date,
-      "announcement_date": announcement_date
-    });
+    var data = new FormData();
+    data.append('idprogram', idprogram);
+    data.append('title', title);
+    data.append('description', description);
+    data.append('rules', rules);
+    data.append('image', image);
+    data.append('qouta', qouta);
+    data.append('end_date', end_date);
+    data.append('announcement_date', announcement_date);
     
     var config = {
       method: 'put',
       url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}`,
       headers: { 
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        'Content-Type': 'application/json'
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       data : data
     };
@@ -168,14 +173,13 @@ const EditProgram = () => {
                   htmlFor="exampleInputEmail1"
                   className="form-label fw-bold"
                 >
-                  Foto Program (Sementara masih string)<span className="p-0 m-0 text-danger">*</span>
+                  Foto Program<span className="p-0 m-0 text-danger">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="file"
                   className="form-control"
-                  id="thumbnail"
-                  value={thumbnail}
-                  onChange={(e) => setThumbnail(e.target.value)}
+                  id="image"
+                  onChange={handleImage}
                   placeholder="Foto Program"
                   required
                 />

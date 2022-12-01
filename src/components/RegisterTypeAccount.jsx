@@ -1,6 +1,7 @@
 import Together from "./../assets/Together-pana.svg";
 import { Link, useNavigate } from "react-router-dom";
 import "./../assets/style.css";
+import Navbar from "../layout/Navbar";
 
 const RegisterTypeAccount = () => {
   const navigate = useNavigate();
@@ -9,8 +10,9 @@ const RegisterTypeAccount = () => {
   // }
   return (
     <section className="">
+      <Navbar/>
       <div className="row mt-2">
-        <Link to={"/login"} className="text-decoration-none px-4 py-2 mt-2 text-dark d-flex align-items-center gap-2">
+        <Link to={"/login"} className="text-decoration-none px-4 mt-2 text-dark d-flex justify-content-center align-items-center gap-2">
           <span class="material-symbols-outlined">arrow_back </span>
           <span>Kembali ke halaman login</span>
         </Link>
@@ -20,7 +22,7 @@ const RegisterTypeAccount = () => {
           </Link>
          
         </h1> */}
-        <img src={Together} className="img-login w-75 mx-auto" alt="" />
+        <img src={Together} className="imageRegister img-login mx-auto" alt="" />
       </div>
       <div>
         <h1 className="title text-center mb-3">Pilih Jenis Akun</h1>

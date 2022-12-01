@@ -45,11 +45,11 @@ function App() {
         />
         <Route path="/my-programs" element={<MyProgram />} />
         <Route path="/active-program" element ={<ActivepProgram/>}/>
+        <Route path="/profile" element={<HalamanProfile />} />
       </Route>
 
       {/* Protected Route */}
       <Route path="/" element={<PrivateLayout />}>
-        <Route path="/profile" element={<HalamanProfile />} />
       </Route>
     </Routes>
   );

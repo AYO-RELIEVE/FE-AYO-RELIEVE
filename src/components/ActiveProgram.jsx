@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import FindIcon from "./../assets/find-program.svg";
+import Together from "./../assets/Together-pana.svg";
+
 const ActivepProgram = ()=> {
     const [program, setProgram] = useState([]);
   useEffect(() => {
@@ -47,7 +49,7 @@ const ActivepProgram = ()=> {
               <div className="flex-shrink-1 w-75">
                 <img
                   className="w-100"
-                  src={program.thumbnail}
+                  src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
                   alt={program.title}
                 />
               </div>

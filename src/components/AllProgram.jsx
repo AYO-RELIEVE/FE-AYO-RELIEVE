@@ -36,7 +36,7 @@ const AllProgram = () => {
       });
   }, []);
 
-  console.log(program);
+  console.log('ini resz program: ', program);
   console.log('ini status user: ', status)
 
   const filterBySearch = (event) => {
@@ -71,13 +71,16 @@ const AllProgram = () => {
             {filteredProgram.map((programs, index) => {
               {
                 if (programs.organization_id == status.id) {
+                  console.log(programs.thumbnail)
                   return (
-                    <div className="card" style={{ width: "22rem" }} key={index}>
-                      <img
-                        src={Together}  // Sementara pake dummy image karena thumbnail di API belum ada
-                        alt=""
-                        className="card-img-top"
-                      />
+                    <Link to={`/detailprogramorganization/${programs.id}`} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
+                      <div className="card-container">
+                        <img
+                          src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                          alt=""
+                          className="card-img-top"
+                        />
+                      </div>
                       <div className="card-body d-flex flex-column gap-2">
                         <h5 className="card-title">{programs.title}</h5>
                         <div className="d-flex align-items-center justify-content-between gap-2">
@@ -95,7 +98,7 @@ const AllProgram = () => {
                           }
                         </div>
                       </div>
-                    </div>
+                    </Link>
                     // <Card
                     //   key={index}
                     //   poster={programs.poster}
@@ -107,12 +110,14 @@ const AllProgram = () => {
                   )
                 } else if (status.status == "applicant") {
                   return (
-                    <div className="card" style={{ width: "22rem" }} key={index}>
-                      <img
-                        src={Together}  // Sementara pake dummy image karena thumbnail di API belum ada
-                        alt=""
-                        className="card-img-top"
-                      />
+                    <Link to={`/detailprogram/${programs.id}`} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
+                      <div className="card-container">
+                        <img
+                          src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                          alt=""
+                          className="card-img-top"
+                        />
+                      </div>
                       <div className="card-body d-flex flex-column gap-2">
                         <h5 className="card-title">{programs.title}</h5>
                         <div className="d-flex align-items-center justify-content-between gap-2">
@@ -130,7 +135,7 @@ const AllProgram = () => {
                           }
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   )
                 }
               }

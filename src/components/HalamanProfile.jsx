@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import './../assets/style.css'
 import axios from 'axios'
 import Icon from "../assets/Icon.png"
+import Navbar from "../layout/Navbar";
 
 const HalamanProfile = () => {
     const [profile, setProfile] = useState({})
     const [detail, setDetail]  = useState({})
+    const statusUser = localStorage.getItem("statusUser")
 
     useEffect(() => {
         axios
@@ -26,17 +28,27 @@ const HalamanProfile = () => {
     
 
     return(
-        <section className="halamanProfile container text-md-start py-5 py-md-0 px-md-0 mb-5">
-            <div className="text-center container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
-                <div className="d-flex flex-column justify-content-center w-100 align-items-center mb-5 ">
-                    <img src={Icon} alt="icon-profile" className="profilePicture"/>
-                    <h4>{profile.name}</h4>
-                    <div className={detail.disability? ".status-disab" : "status"}>{detail.disability? "Penyandang Disabilitas" : "Bukan Penyandang Disabilitas"}</div>
-                    <h5>{detail.profession}</h5>
-                    <div>{profile.email}</div>
+        <>
+            <Navbar/>
+            <section className="halamanProfile container text-md-start py-5 py-md-0 px-md-0 mb-5">
+                <div className="text-center container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
+                    <div className="d-flex flex-column justify-content-center w-100 align-items-center mb-5 ">
+                        <img src={Icon} alt="icon-profile" className="profilePicture"/>
+                        <h4>{profile.name}</h4>
+                        {
+                            statusUser == "organization" ? 
+                            <></>
+                            : 
+                            <>
+                                <div className={detail.disability? ".status-disab" : "status"}>{detail.disability? "Penyandang Disabilitas" : "Bukan Penyandang Disabilitas"}</div>
+                                <h5>{detail.profession}</h5>
+                            </>
+                        }
+                        <div>{profile.email}</div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     )
 }
 

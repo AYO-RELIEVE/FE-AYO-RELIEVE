@@ -97,7 +97,7 @@ const HomeOrganization = () => {
                         {
                             if (programs.organization_id == status.id) {
                                 return (
-                                    <div className="card" style={{ width: "22rem" }} key={index}>
+                                    <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
                                         <img
                                         src={Together}
                                         alt=""
@@ -110,10 +110,10 @@ const HomeOrganization = () => {
                                             <img src={Together} className="image-pt" />
                                             <div className="">Partner Name</div>
                                             </div>
-                                            <Link to={`/detailprogramorganization/${programs.id}`}>Detail</Link>
+                                            <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'}>Detail</Link>
                                         </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             }
                         }
@@ -168,9 +168,9 @@ const HomeOrganization = () => {
                 </div>
             </section>
       
-            <div className="mx-auto d-flex justify-content-center mt-5">
-                <button className="btn button shadow-sm">
-                <Link to="/allprogram" className="text-decoration-none a">
+            <div className="mx-auto d-flex justify-content-center mt-0">
+                <button className="btn buttonHome shadow-sm">
+                <Link to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
                     Lihat Semua Program
                 </Link>
                 </button>

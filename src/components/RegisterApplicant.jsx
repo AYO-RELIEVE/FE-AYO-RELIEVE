@@ -14,6 +14,7 @@ const RegisterApplicant = () => {
   const [phone_number, setPhone_number] = useState("");
   const [gender, setGender] = useState("");
   const [profession, setProfession] = useState("");
+  const [photo, setPhoto] = useState("");
   const [date_of_birth, setDate_of_birth] = useState("");
   const [status, setStatus] = useState("applicant");
   const [address, setAddress] = useState("");
@@ -21,41 +22,48 @@ const RegisterApplicant = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  if (disability === "true") {
-    disability = true;
-  } else if (disability === "false") {
-    disability = false;
-  } else {
-    disability = "";
-  }
+
+  const handlePhoto = (e) => {
+    console.log("event :", e);
+    setPhoto(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     signUp();
   };
 
   async function signUp() {
-    const dataRegist = {
-      name,
-      phone_number,
-      gender,
-      profession,
-      date_of_birth,
-      status,
-      address,
-      email,
-      username,
-      password,
-      disability,
-    };
+
+    if (disability === "true") {
+      disability = true;
+    } else if (disability === "false") {
+      disability = false;
+    } else {
+      disability = "";
+    }
+    var dataRegist = new FormData();
+    dataRegist.append('name', name);
+    dataRegist.append('phone_number', phone_number);
+    dataRegist.append('gender', gender);
+    dataRegist.append('profession', profession);
+    dataRegist.append('photo', photo);
+    dataRegist.append('date_of_birth', date_of_birth);
+    dataRegist.append('status', status);
+    dataRegist.append('address', address);
+    dataRegist.append('email', email);
+    dataRegist.append('username', username);
+    dataRegist.append('password', password);
+    dataRegist.append('disability', disability);
     // console.log(dataRegist);
     let result = await fetch(
-      "https://ayo-relieve.osorateam.com/api/auth/register",
+      "http://ayo-relieve.osorateam.com/api/auth/register",
       {
         method: "POST",
-        body: JSON.stringify(dataRegist),
+        body: dataRegist,
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
+          // Accept: "application/json",
         },
       }
     );
@@ -69,7 +77,7 @@ const RegisterApplicant = () => {
         icon: "success",
         button: "OK!",
       });
-      navigate('/login')
+      // navigate('/login')
     } else if (res.message !== "Register Success") {
       swal({
         title: "Registrasi Gagal!",
@@ -84,7 +92,7 @@ const RegisterApplicant = () => {
     <>
       <Navbar/>
       <section className="">
-        <div className="row mt-5">
+        <div className="row my-5">
           <h1 className="text-center">
             <Link to="/" className="text-decoration-none heading">
               AYO.RELIEVE
@@ -92,10 +100,10 @@ const RegisterApplicant = () => {
           </h1>
         </div>
         <div className="row">
-          <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
-            <img src={Together} className="w-50" alt="" />
+          <div className="container d-flex flex-column justify-content-center flex-sm-row">
+            <img src={Together} className="imageRegister" alt="" />
             <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
-            <form action="" onSubmit={handleSubmit} className="w-100 px-5">
+            <div className="w-100 px-5">
               {/* /// Nama Lengkap //// */}
               <div className="mb-3">
                 <label
@@ -111,6 +119,25 @@ const RegisterApplicant = () => {
                   className="form-control"
                   id="name"
                   placeholder="Nama Lengkap"
+                  required
+                />
+              </div>
+              {/* Foto Program */}
+              <div className="mb-3">
+                <label
+                  htmlFor="exampleInputEmail1"
+                  className="form-label fw-bold"
+                >
+                  Foto Program<span className="p-0 m-0 text-danger">*</span>
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="photo"
+                  // value={image}
+                  // onChange={(e) => setImage(e.target.files[0])}
+                  onChange={handlePhoto}
+                  placeholder="Foto Program"
                   required
                 />
               </div>
@@ -271,14 +298,14 @@ const RegisterApplicant = () => {
                 id="password"
               />
             </div>
-            <button className="btn btn-primary button">Daftar</button>
+            <button onClick={handleSubmit} className="btn btn-primary button">Daftar</button>
             <p className="mt-3">
               Sudah memiliki akun?
               <Link to="/login" className="text-decoration-none heading mx-1">
                 Masuk
               </Link>
             </p>
-            </form>
+            </div>
           </div>
         </div>
       </section>

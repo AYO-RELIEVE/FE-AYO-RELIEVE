@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Together from "./../assets/Together-pana.svg";
+import "./../assets/style.css";
+import Navbar from "../layout/Navbar";
 
 const RegisterOrganization = () => {
       const navigate = useNavigate();
@@ -71,7 +73,8 @@ const RegisterOrganization = () => {
   }
   return (
     <section>
-      <div className="row mt-5">
+      <Navbar/>
+      <div className="row my-5">
         <h1 className="text-center">
           <Link to="/" className="text-decoration-none heading">
             AYO.RELIEVE
@@ -79,8 +82,8 @@ const RegisterOrganization = () => {
         </h1>
       </div>
       <div className="row">
-        <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
-          <img src={Together} className="w-50" alt="" />
+        <div className="container d-flex flex-column justify-content-center flex-sm-row">
+          <img src={Together} className="imageRegister img-login mx-auto" alt="" />
           <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
           <form onSubmit={handleSubmit} className="w-100 px-5">
             {/* Nama Organisasi */}

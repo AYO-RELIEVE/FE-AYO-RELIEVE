@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Together from "./../assets/Together-pana.svg";
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const DetailProgram = () => {
 
@@ -13,15 +14,34 @@ const DetailProgram = () => {
     const [program, setProgram] = useState(null)
       
     useEffect(() => {
-        axios
-            .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`)
-            .then((res) => {
-                setProgram(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-    }, []);
+        // axios
+        //     .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+        //     headers: {
+        //         'Authorization': `Bearer ${localStorage.getItem('token')}`
+        //     })
+        //     .then((res) => {
+        //         setProgram(res.data.data);
+        //         console.log('ini res baru: ', res)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     });
+        var config = {
+            method: 'get',
+            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+          };
+          axios(config)
+              .then((res) => {
+                  setProgram(res.data.data);
+                  console.log('ini res baru: ', res)
+              })
+              .catch((err) => {
+                  console.log(err)
+              });
+    }, [program]);
     
     console.log(program)
 
@@ -63,18 +83,26 @@ const DetailProgram = () => {
             { program !== null &&
                 <>
                     <Navbar/>
-                    <section className="container text-md-start py-5 py-md-5 px-md-0">
+                    <section className="container text-md-start py-4 py-md-4 px-md-0">
+                        <Link className="buttonBackContainer d-flex" to={`/allprogram`} >
+                            <div className='buttonBackIconContainer'>
+                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
+                            </div>
+                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
+                                Kembali
+                            </div>
+                        </Link>
                         <div
                             className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
                         >
-                            <div className="">
+                            <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
-                                    src={Together}
-                                    className="img-fluid w-100 w-md-50 col-2 order-1 order-md-1 mx-md-0 rounded"
+                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                                    className="imageDetail img-fluid col-2 order-1 order-md-1 mx-md-0 rounded"
                                     alt="together-pana"
                                 />
                             </div>
-                            <div className="order-2 order-md-2 mt-4 mt-md-0 px-md-4">
+                            <div className="w-100 w-lg-50 order-2 order-md-2 mt-4 mt-md-0 px-md-4">
                                 <h1 className="fw-bold">
                                     {program.title}
                                 </h1>
@@ -95,20 +123,41 @@ const DetailProgram = () => {
                                 </div>
                                 <div className="button-joined">
                                     {
-                                        (program.id == campaignJoin) &&
-                                            <div>
-                                                <button disabled className="btn button mt-2 mt-lg-0">
-                                                    Anda Telah Tergabung
-                                                </button>
-                                            </div>
-                                    }
-                                    {
-                                        (program.id != campaignJoin) &&
+                                        program.applicant.length == 0 &&
                                             <div>
                                                 <button className="btn button mt-2 mt-lg-0" onClick={joinCampaign}>
                                                     Join Program
                                                 </button>
                                             </div>
+                                    }
+                                    {
+                                        program.applicant.length != 0 &&
+                                            <>
+                                                {
+                                                    (program.applicant[0].Program_Users.status == "Diterima") &&
+                                                        <div>
+                                                            <button disabled className="btn btn-success mt-2 mt-lg-0">
+                                                                Anda Telah Diterima
+                                                            </button>
+                                                        </div>
+                                                }
+                                                {
+                                                    (program.applicant[0].Program_Users.status == "Ditolak") &&
+                                                        <div>
+                                                            <button disabled className="btn btn-danger mt-2 mt-lg-0">
+                                                                Anda Telah Ditolak
+                                                            </button>
+                                                        </div>
+                                                }
+                                                {
+                                                    (program.applicant[0].Program_Users.status == "Menunggu") &&
+                                                        <div>
+                                                            <button disabled className="btn btn-secondary mt-2 mt-lg-0">
+                                                                Menunggu Seleksi
+                                                            </button>
+                                                        </div>
+                                                }
+                                            </>
                                     }
                                 </div>
                             </div>

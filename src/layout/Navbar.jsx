@@ -18,13 +18,13 @@ const Navbar = () => {
         {
           statusUser == "organization" ? 
           <h1>
-            <Link className="navbar-brand" to="/organization">
+            <Link className="navbar-brand navbarTitle" to="/organization">
               AYO RELIEVE
             </Link>
           </h1>
           : 
           <h1>
-            <Link className="navbar-brand" to="/">
+            <Link className="navbar-brand navbarTitle" to="/">
               AYO RELIEVE
             </Link>
           </h1>
@@ -40,38 +40,73 @@ const Navbar = () => {
 
         {isLogin != null && (
           <>
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <span>Profile</span>
-            </div>
+            {
+              statusUser == "organization" ?
+              <>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <span>Profile</span>
+                </div>
 
-            <div className=" dropdown " id="dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img src={Icon} alt="..." className="profileImage" />{" "}
-              </a>
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">
-                  <Link to="/profile" className="btn p-0" type="button">
-                    Profile
-                  </Link>
-                </li>
-                <li className="dropdown-item">
-                  <Link to="/my-programs" className="btn p-0" type="button">
-                    My Programs
-                  </Link>
-                </li>
-                <li className="dropdown-item">
-                  <Link to="/logout" className="btn p-0" type="button">
-                    Logout
-                  </Link>
-                </li>
-              </ul>
-            </div>
+                <div className=" dropdown " id="dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img src={Icon} alt="..." className="profileImage" />{" "}
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-item">
+                      <Link to="/profile" className="btn p-0" type="button">
+                        Profile
+                      </Link>
+                    </li>
+                    <li className="dropdown-item">
+                      <Link to="/logout" className="btn p-0" type="button">
+                        Logout
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </>
+              :
+              <>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <span>Profile</span>
+                </div>
+
+                <div className=" dropdown " id="dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img src={Icon} alt="..." className="profileImage" />{" "}
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li className="dropdown-item">
+                      <Link to="/profile" className="btn p-0" type="button">
+                        Profile
+                      </Link>
+                    </li>
+                    <li className="dropdown-item">
+                      <Link to="/my-programs" className="btn p-0" type="button">
+                        My Programs
+                      </Link>
+                    </li>
+                    <li className="dropdown-item">
+                      <Link to="/logout" className="btn p-0" type="button">
+                        Logout
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </>
+            }
           </>
         )}
       </div>
