@@ -36,7 +36,7 @@ const ActivepProgram = ()=> {
         <Link className="text-decoration-none active"> <h6>Program Aktif</h6></Link>
       </div>
       {/* card */}
-      <section  className="row justify-content-center w-100 mx-auto">
+      <section  className="row justify-content-center w-100 mx-auto px-3">
       {activeProgram.length == 0? (
         <div className="px-5 my-5">
           <img src={FindIcon} alt="Looking for Program" className="icon"/>
@@ -45,30 +45,30 @@ const ActivepProgram = ()=> {
       ): (
         activeProgram.map((program) => {
         return (
-            <div key ={program.id}className="col col-md-3 col-lg-3 shadow-sm border-1 border rounded-2 border-secondary px-2 mx-4 py-2 d-flex gap-2 align-items-center my-3 justify-content-center">
-              <div className="flex-shrink-1 w-75">
-                <img
-                  className="w-100"
-                  src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
-                  alt={program.title}
-                />
-              </div>
-              <div className="w-100 d-flex flex-column gap-0 py-2 justify-content-center">
-                <h6 className="p-0 m-0">{program.title}</h6>
-                <div className="d-flex align-items-center gap-2 m-0 p-0">
-                  <img
-                    src="https://logos-download.com/wp-content/uploads/2016/03/Unilever_logotype_emblem_logo.png"
-                    className="img-pt d-block m-0 p-0"
-                  />
-                  <div className="pt-3 m-0">
-                    <p className="">PT Unilever</p>
-                  </div>
-                </div>
-                <p className="status-seleksi-approve text-white text-center d-flex align-content-center justify-content-center">
-                  {program.Program_Users.status}
-                </p>
-              </div>
+          <Link to={`/detailprogram/${program.id}`} style={{ textDecoration: 'none', color: '#29325d' }} key ={program.id}className="col-sm col-md-3 col-lg-3 shadow-sm border-1 border rounded-2 border-secondary px-2 mx-3 py-2 d-flex gap-2 align-items-center my-3 justify-content-center">
+            <div className="flex-shrink-1 w-75">
+              <img
+                className="w-100"
+                src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                alt={program.title}
+              />
             </div>
+            <div className="w-100 d-flex flex-column gap-0 py-2 justify-content-center">
+              <h6 className="p-0 m-0">{program.title}</h6>
+              <div className="d-flex align-items-center gap-2 m-0 p-0">
+                <img
+                  src="https://logos-download.com/wp-content/uploads/2016/03/Unilever_logotype_emblem_logo.png"
+                  className="img-pt d-block m-0 p-0"
+                />
+                <div className="pt-3 m-0">
+                  <p className="">PT Unilever</p>
+                </div>
+              </div>
+              <p className="status-seleksi-approve text-white text-center d-flex align-content-center justify-content-center">
+                {program.Program_Users.status}
+              </p>
+            </div>
+          </Link>
         );
       })
       )}

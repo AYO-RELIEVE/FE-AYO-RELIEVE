@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
 import Navbar from '../layout/Navbar'
+import Company from "./../assets/Company.jpg"
 
 const HomeOrganization = () => {
     const [program, setProgram] = useState([]);
@@ -23,19 +24,6 @@ const HomeOrganization = () => {
             .then((res) => {
                 setProgram(res.data.data);
                 console.log('ini /programs: ', res)
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-        axios
-            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/7`, {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-            })
-            .then((res) => {
-                setApplyers(res.data.data);
-                console.log('ini /programs/7: ', res)
             })
             .catch((err) => {
                 console.log(err);
@@ -74,10 +62,17 @@ const HomeOrganization = () => {
                     berbagai program untuk mengatasi isu pandemi, perubahan iklim, dan
                     pemanasan global
                     </p>
-                    <div className="d-md-block d-lg-block">
-                        <Link to="/createprogram" className="btn button">
-                            Buat Program
-                        </Link>
+                    <div className="d-sm-flex">
+                        <div className="d-md-block d-lg-block mb-2">
+                            <Link to="/createprogram" className="btn button">
+                                Buat Program
+                            </Link>
+                        </div>
+                        <div className="d-md-block d-lg-block mx-md-2">
+                            <Link to="/allprogram" className="btn button">
+                                Lihat Semua Program
+                            </Link>
+                        </div>
                     </div>
                 </div>
                 <img
@@ -93,31 +88,83 @@ const HomeOrganization = () => {
                     <h1 className="text-center text-md-start">Lihat Program Terbaru</h1>
                     <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
                     
-                    {program.slice(programLengthStart, programLength).map((programs, index) => {
                         {
-                            if (programs.organization_id == status.id) {
-                                return (
-                                    <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
-                                        <img
-                                        src={Together}
-                                        alt=""
-                                        className="card-img-top"
-                                        />
-                                        <div className="card-body d-flex flex-column gap-2">
-                                        <h5 className="card-title">{programs.title}</h5>
-                                        <div className="d-flex align-items-center justify-content-between gap-2">
-                                            <div className="d-flex align-items-center gap-2">
-                                            <img src={Together} className="image-pt" />
-                                            <div className="">Partner Name</div>
-                                            </div>
-                                            <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'}>Detail</Link>
-                                        </div>
-                                        </div>
-                                    </Link>
-                                )
-                            }
+                            (program.length >= 3) &&
+                            <>
+                                {program.slice(programLengthStart, programLength).map((programs, index) => {
+                                    {
+                                        if (programs.organization_id == status.id) {
+                                            return (
+                                                <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
+                                                    <div className="card-container">
+                                                        <img
+                                                            src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                                                            alt=""
+                                                            className="card-img-top"
+                                                        />
+                                                    </div>
+                                                    <div className="card-body d-flex flex-column gap-2">
+                                                    <h5 className="card-title">{programs.title}</h5>
+                                                    <div className="d-flex align-items-center justify-content-between gap-2">
+                                                        <div className="d-flex align-items-center gap-2">
+                                                        <img 
+                                                            src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                                                            className="image-pt" 
+                                                        />
+                                                        <div className="">{programs.organization.name}</div>
+                                                        </div>
+                                                        <Link
+                                                            style={{ textDecoration: 'none' }} 
+                                                            to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'}
+                                                            className="buttonDetailHome"
+                                                        >
+                                                            Detail
+                                                        </Link>
+                                                    </div>
+                                                    </div>
+                                                </Link>
+                                            )
+                                        }
+                                    }
+                                })}
+                            </>
                         }
-                    })}
+                        {
+                            (program.length < 3) &&
+                            <>
+                                {program.map((programs, index) => {
+                                    {
+                                        if (programs.organization_id == status.id) {
+                                            return (
+                                                <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
+                                                    <div className="card-container">
+                                                        <img
+                                                            src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                                                            alt=""
+                                                            className="card-img-top"
+                                                        />
+                                                    </div>
+                                                    <div className="card-body d-flex flex-column gap-2">
+                                                    <h5 className="card-title">{programs.title}</h5>
+                                                    <div className="d-flex align-items-center justify-content-between gap-2">
+                                                        <div className="d-flex align-items-center gap-2">
+                                                        <img 
+                                                            src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                                                            className="image-pt" 
+                                                        />
+                                                        <div className="">{programs.organization.name}</div>
+                                                        </div>
+                                                        <Link to={localStorage.getItem('Email') ? `/detailprogramorganization/${programs.id}` : '/login'}>Detail</Link>
+                                                    </div>
+                                                    </div>
+                                                </Link>
+                                            )
+                                        }
+                                    }
+                                })}
+                            </>
+                        }
+
                     </div>
                 </div>
             </section>
@@ -168,7 +215,7 @@ const HomeOrganization = () => {
                 </div>
             </section>
       
-            <div className="mx-auto d-flex justify-content-center mt-0">
+            <div className="mx-auto d-flex justify-content-center mt-4">
                 <button className="btn buttonHome shadow-sm">
                 <Link to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
                     Lihat Semua Program

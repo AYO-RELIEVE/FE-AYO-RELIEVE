@@ -4,28 +4,16 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
-import { BsArrowLeftCircle } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";
+import Company from "./../assets/Company.jpg"
 
 const DetailProgram = () => {
 
     const params = useParams()
     const navigate = useNavigate()
-    const [campaignJoin, setCampaignJoin] = useState(localStorage.getItem("CampaignJoined"))
     const [program, setProgram] = useState(null)
       
     useEffect(() => {
-        // axios
-        //     .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`,
-        //     headers: {
-        //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-        //     })
-        //     .then((res) => {
-        //         setProgram(res.data.data);
-        //         console.log('ini res baru: ', res)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     });
         var config = {
             method: 'get',
             url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}`,
@@ -41,7 +29,7 @@ const DetailProgram = () => {
               .catch((err) => {
                   console.log(err)
               });
-    }, [program]);
+    }, []);
     
     console.log(program)
 
@@ -65,6 +53,7 @@ const DetailProgram = () => {
                   button: "Ok",
                 });
             }
+            window.location.reload()
         })
         .catch((error) => {
             console.log('message eroor: ', error)
@@ -84,16 +73,13 @@ const DetailProgram = () => {
                 <>
                     <Navbar/>
                     <section className="container text-md-start py-4 py-md-4 px-md-0">
-                        <Link className="buttonBackContainer d-flex" to={`/allprogram`} >
-                            <div className='buttonBackIconContainer'>
-                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
-                            </div>
-                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
-                                Kembali
-                            </div>
-                        </Link>
+                        <div className="buttonKembaliDetailProgramContainer" >
+                            <Link style={{ textDecoration: 'none' }} to={"/allprogram"}  className="buttonKembaliDetailProgram shadow">
+                                <BiArrowBack className="BiArrowBack"/>
+                            </Link>
+                        </div>
                         <div
-                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
+                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row mt-4"
                         >
                             <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
@@ -108,7 +94,7 @@ const DetailProgram = () => {
                                 </h1>
                                 <div className="d-flex">
                                     <img
-                                        src={Together}
+                                        src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
 import Navbar from "../layout/Navbar";
+import Company from "./../assets/Company.jpg"
 
 const Home = () => {
   const [program, setProgram] = useState([]);
@@ -53,6 +54,11 @@ const Home = () => {
               berbagai program untuk mengatasi isu pandemi, perubahan iklim, dan
               pemanasan global
             </p>
+            <div className="d-md-block d-lg-block">
+              <Link className="btn button" to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
+                Lihat Semua Program
+              </Link>
+            </div>
           </div>
           <img
             src={Together}
@@ -115,19 +121,30 @@ const Home = () => {
             {program.slice(programLengthStart, programLength).map((programs, index) => {
               return (
                 <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
-                  <img
-                    src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
-                    alt=""
-                    className="card-img-top"
-                  />
+                  <div className="card-container">
+                    <img
+                      src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                      alt=""
+                      className="card-img-top"
+                    />
+                  </div>
                   <div className="card-body d-flex flex-column gap-2">
                     <h5 className="card-title">{programs.title}</h5>
                     <div className="d-flex align-items-center justify-content-between gap-2">
                       <div className="d-flex align-items-center gap-2">
-                        <img src={Together} className="image-pt" />
-                        <div className="">Partner Name</div>
+                        <img 
+                          src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                          className="image-pt" 
+                        />
+                        <div className="">{programs.organization.name}</div>
                       </div>
-                      <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'}>Detail</Link>
+                      <Link 
+                        style={{ textDecoration: 'none' }}
+                        to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'}
+                        className="buttonDetailHome"
+                      >
+                        Detail
+                      </Link>
                     </div>
                   </div>
                 </Link>
@@ -144,35 +161,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className="py-5 program-disab">
-        <div className="container px-4">
-          <h1 className="text-center text-md-start">
-            Disabilitas Bukan Hambatan
-          </h1>
-          <div className="container-card-disabilitas mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.slice(7, 10).map((programs) => {
-              return (
-                <Card
-                  key={programs.id}
-                  poster={programs.poster}
-                  name={programs.nama_program}
-                  partnerLogo={programs.partner.logo}
-                  partnerName={programs.partner.nama}
-                  idProgram={programs.id}
-                />
-              );
-            })}
-          </div>
-          <div className="mx-auto d-flex justify-content-center mt-5">
-            <button className="btn button shadow-sm">
-              <Link to="/allprogram" className="text-decoration-none a">
-                Lihat Program Lainnya
-              </Link>
-            </button>
-          </div>
-        </div>
-      </section> */}
       
       <div className="mx-auto d-flex justify-content-center mt-0">
         <button className="btn buttonHome shadow-sm">

@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import Together from "./../assets/Together-pana.svg";
 import "./../assets/style.css";
-import Navbar from "../layout/Navbar";
 import axios from "axios";
+import swal from "sweetalert";
 
 const RegisterOrganization = () => {
   const navigate = useNavigate();
@@ -49,9 +49,21 @@ const RegisterOrganization = () => {
     axios(config)
     .then(function (response) {
       console.log('respon register ', response);
+      swal({
+        title: "Register Berhasil!",
+        icon: "success",
+        button: "Tutup"
+      });
+      navigate('/login')
     })
     .catch(function (error) {
       console.log('respon error ', error);
+      swal({
+        title: "Register Gagal!",
+        text: error.response.data.message[0].message,
+        icon: "error",
+        button: "Tutup"
+      });
     });
   }
   return (

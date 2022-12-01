@@ -4,7 +4,7 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
-import { BsArrowLeftCircle } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";
 
 const DetailApplicant = () => {
 
@@ -51,7 +51,7 @@ const DetailApplicant = () => {
             .catch((err) => {
                 console.log(err);
             });
-    }, [applyers]);
+    }, []);
 
     const handleApprove = (id) => {
         var config = {
@@ -70,6 +70,7 @@ const DetailApplicant = () => {
                 icon: "success",
                 button: "Tutup",
               });
+              window.location.reload()
         })
         .catch(function (error) {
             console.log('error approff: ', error);
@@ -98,6 +99,7 @@ const DetailApplicant = () => {
                 icon: "success",
                 button: "Tutup",
               });
+              window.location.reload()
         })
         .catch(function (error) {
             console.log('error reject: ', error);
@@ -118,16 +120,13 @@ const DetailApplicant = () => {
                 <>
                     <Navbar/>
                     <section className="container text-md-start py-4 py-md-4 px-md-0">
-                        <Link className="buttonBackContainer d-flex" to={`/detailprogramorganization/${program.id}`} >
-                            <div className='buttonBackIconContainer'>
-                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
-                            </div>
-                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
-                                Kembali
-                            </div>
-                        </Link>
+                        <div className="buttonKembaliDetailProgramContainer" >
+                            <Link style={{ textDecoration: 'none' }} to={`/detailprogramorganization/${program.id}`} className="buttonKembaliDetailProgram shadow">
+                                <BiArrowBack className="BiArrowBack"/>
+                            </Link>
+                        </div>
                         <div
-                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
+                            className="container d-flex flex-column justify-content-center align-items-center flex-md-row mt-4"
                         >
                             <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
@@ -142,7 +141,7 @@ const DetailApplicant = () => {
                                 </h1>
                                 <div className="d-flex">
                                     <img
-                                        src={Together}
+                                        src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
@@ -182,8 +181,8 @@ const DetailApplicant = () => {
                                                 { 
                                                     applyers.applicant.map((applicants, index) => {
                                                         return (
-                                                            <tr className="">
-                                                                <th scope="row">
+                                                            <tr>
+                                                                <th className="text-center">
                                                                     {index+1}
                                                                 </th>
                                                                 <td>
@@ -192,15 +191,15 @@ const DetailApplicant = () => {
                                                                 <td>
                                                                     {applicants.Program_Users.status}
                                                                 </td>
-                                                                <td className="d-flex gap-2">
+                                                                <td className="d-sm-flex gap-2">
                                                                     <button 
-                                                                        className="btn btn-success w-100 mt-lg-0 d-flex justify-content-center align-items-center"
+                                                                        className="btn btn-success w-100 mt-lg-0 d-flex justify-content-center align-items-center mb-2"
                                                                         onClick={() => handleApprove(applicants.id)}
                                                                     >
                                                                         Terima
                                                                     </button>
                                                                     <button 
-                                                                        className="btn btn-danger w-100 mt-lg-0 d-flex justify-content-center align-items-center"
+                                                                        className="btn btn-danger w-100 mt-lg-0 d-flex justify-content-center align-items-center mb-2"
                                                                         onClick={() => handleReject(applicants.id)}
                                                                     >
                                                                         Tolak

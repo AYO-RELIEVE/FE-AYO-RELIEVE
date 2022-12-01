@@ -17,6 +17,7 @@ const CreateProgram = () => {
   const [image, setImage] = useState("");
   console.log('ini image: ', image)
   const [qouta, setQouta] = useState();
+  console.log('ini type quota1: ', typeof qouta)
   const [end_date, setEndDate] = useState("");
   const [announcement_date, setAnnouncementDate] = useState("");
 
@@ -32,6 +33,7 @@ const CreateProgram = () => {
     data.append('rules', rules);
     data.append('image', image);
     data.append('qouta', qouta);
+    console.log('ini type quota2: ', typeof qouta)
     data.append('end_date', end_date);
     data.append('announcement_date', announcement_date);
 
@@ -208,7 +210,8 @@ const CreateProgram = () => {
                   required
                 />
               </div>
-              <button className="btn btn-primary button" onClick={createPrograms}>Buat Program</button>
+              <Link to="/organization" className="btn btn-primary button">Cancel</Link>
+              <button className="btn btn-primary button mx-2" onClick={createPrograms}>Buat Program</button>
             </div>
           </div>
         </div>

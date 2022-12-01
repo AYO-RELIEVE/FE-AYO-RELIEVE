@@ -5,6 +5,8 @@ import axios from "axios";
 import Card from "./Card";
 import "./../assets/style.css";
 import Navbar from "../layout/Navbar";
+import { BiArrowBack } from "react-icons/bi";
+import Company from "./../assets/Company.jpg"
 
 const AllProgram = () => {
   const [program, setProgram] = useState([]);
@@ -55,6 +57,14 @@ const AllProgram = () => {
       <Navbar/>
       <div className="container-sm container">
         <div className="d-flex my-4 w-100">
+          {
+            (status.status == 'organization') && 
+              <Link style={{ textDecoration: 'none' }} to={"/organization"} className="buttonKembaliAllProgram shadow"><BiArrowBack className="BiArrowBack"/></Link>
+          }
+          {
+            (status.status != 'organization') && 
+              <Link style={{ textDecoration: 'none' }} to={"/"} className="buttonKembaliAllProgram shadow"><BiArrowBack className="BiArrowBack"/></Link>
+          }
           <input
             id="search-box"
             className="form-control me-2"
@@ -85,8 +95,11 @@ const AllProgram = () => {
                         <h5 className="card-title">{programs.title}</h5>
                         <div className="d-flex align-items-center justify-content-between gap-2">
                           <div className="d-flex align-items-center gap-2">
-                            <img src={Together} className="image-pt" />
-                            <div className="">Partner Name</div>
+                            <img 
+                              src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                              className="image-pt" 
+                            />
+                            <div className="">{programs.organization.name}</div>
                           </div>
                           {
                             (status.status == 'organization') && 
@@ -122,8 +135,11 @@ const AllProgram = () => {
                         <h5 className="card-title">{programs.title}</h5>
                         <div className="d-flex align-items-center justify-content-between gap-2">
                           <div className="d-flex align-items-center gap-2">
-                            <img src={Together} className="image-pt" />
-                            <div className="">Partner Name</div>
+                            <img
+                              src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                              className="image-pt" 
+                            />
+                            <div className="">{programs.organization.name}</div>
                           </div>
                           {
                             (status.status == 'organization') && 
