@@ -28,12 +28,12 @@ const RegisterApplicant = () => {
     setPhoto(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signUp();
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   signUp();
+  // };
 
-  async function signUp() {
+  const registerApplicant = () => {
 
     if (disability === "true") {
       disability = true;
@@ -55,37 +55,23 @@ const RegisterApplicant = () => {
     dataRegist.append('username', username);
     dataRegist.append('password', password);
     dataRegist.append('disability', disability);
-    // console.log(dataRegist);
-    let result = await fetch(
-      "http://ayo-relieve.osorateam.com/api/auth/register",
-      {
-        method: "POST",
-        body: dataRegist,
-        headers: {
-          "Content-Type": "application/json",
-          // Accept: "application/json",
-        },
-      }
-    );
-    // console.log("result", result)
-    console.log(result)
-    const res = await result.json();
-    console.log(res)
-    if (res.message == "Register Success") {
-      swal({
-        title: "Registrasi Berhasil!",
-        icon: "success",
-        button: "OK!",
-      });
-      // navigate('/login')
-    } else if (res.message !== "Register Success") {
-      swal({
-        title: "Registrasi Gagal!",
-        text: res.message,
-        icon: "error",
-        button: "OK"
-      });
-    }
+
+    var config = {
+      method: 'post',
+      url: 'https://ayo-relieve.osorateam.com/api/auth/register',
+      headers: { 
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      data : dataRegist
+    };
+
+    axios(config)
+    .then(function (response) {
+      console.log('respon register ', response);
+    })
+    .catch(function (error) {
+      console.log('respon error ', error);
+    });
   }
 
   return (
@@ -298,7 +284,7 @@ const RegisterApplicant = () => {
                 id="password"
               />
             </div>
-            <button onClick={handleSubmit} className="btn btn-primary button">Daftar</button>
+            <button onClick={registerApplicant} className="btn btn-primary button">Daftar</button>
             <p className="mt-3">
               Sudah memiliki akun?
               <Link to="/login" className="text-decoration-none heading mx-1">

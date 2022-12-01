@@ -1,14 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Icon from "../assets/Icon.png";
 import "./../assets/style.css";
+import axios from "axios";
 
 const Navbar = () => {
   const user = useSelector((store) => store.user.data);
   const isLogin = localStorage.getItem("Email")
   const statusUser = localStorage.getItem("statusUser")
+  const [profile, setProfile] = useState({})
 
+  useEffect(() => {
+      axios
+          .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+              headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+          })
+          .then((res) => {
+              setProfile(res.data.data)
+              setDetail(res.data.data.user_applicant_detail)
+          })
+          .catch((err) => {
+              console.log(err)
+          });
+          
+  }, []);
+
+  console.log('ini profL ', profile)
   console.log('status userz: ', statusUser)
 
   return (
@@ -55,7 +75,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={Icon} alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Icon } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">
@@ -85,7 +105,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={Icon} alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Icon } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">

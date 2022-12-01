@@ -25,6 +25,8 @@ const HalamanProfile = () => {
             });
             
     }, []);
+
+    console.log(profile)
     
 
     return(
@@ -33,7 +35,7 @@ const HalamanProfile = () => {
             <section className="halamanProfile container text-md-start py-5 py-md-0 px-md-0 mb-5">
                 <div className="text-center container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
                     <div className="d-flex flex-column justify-content-center w-100 align-items-center mb-5 ">
-                        <img src={Icon} alt="icon-profile" className="profilePicture"/>
+                        <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Icon} alt="icon-profile" className="profilePicture"/>
                         <h4>{profile.name}</h4>
                         {
                             statusUser == "organization" ? 

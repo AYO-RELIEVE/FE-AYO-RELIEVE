@@ -36,6 +36,22 @@ const DetailApplicant = () => {
                 console.log(err);
             });
     }, []);
+      
+    useEffect(() => {
+        axios
+            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            })
+            .then((res) => {
+                setApplyers(res.data.data);
+                console.log('ini res: ', res)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [applyers]);
 
     const handleApprove = (id) => {
         var config = {
@@ -156,6 +172,7 @@ const DetailApplicant = () => {
                                         <tr>
                                         <th scope="col"></th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Options</th>
                                         </tr>
                                     </thead>
@@ -171,6 +188,9 @@ const DetailApplicant = () => {
                                                                 </th>
                                                                 <td>
                                                                     {applicants.name}
+                                                                </td>
+                                                                <td>
+                                                                    {applicants.Program_Users.status}
                                                                 </td>
                                                                 <td className="d-flex gap-2">
                                                                     <button 
