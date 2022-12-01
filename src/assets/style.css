@@ -214,13 +214,106 @@ footer>* {
     margin: 40px auto;
   }
   .icon {
-  width: 25%!important;
-  margin: 1rem auto!important;
-  display: block!important;
+    width: 25%!important;
+    margin: 1rem auto!important;
+    display: block!important;
+  }
 }
-.icon-regist {
-  width: 20%!important;
-  margin: 1rem auto!important;
-  display: block !important;
+
+/* Button Home */
+
+.buttonBackContainer{
+  margin: 0px 10px 20px 10px;
+  display: flex;
+  align-items: center;
 }
+
+.buttonBackIcon{
+  width: 25px;
+  height: 25px;
+  color: #29325d;
+}
+
+.buttonBackText{
+  margin-left: 10px;
+  font-size: 20px;
+  color: #29325d;
+}
+
+.buttonHome{
+  background-color: white;
+  border: 1px solid #4e93fa;
+  color: #4e93fa;
+}
+
+.buttonHome:hover{
+  background-color: #4e93fa;
+  border: 1px solid #4e93fa;
+  color: white;
+}
+
+/* Detail Program */
+
+.imageDetail{
+  height: auto;
+  width: auto;
+}
+
+@media screen and (min-width: 426px) {
+  .imageDetailContainer{
+    border: 1px solid rgb(175, 175, 175);
+    display: flex;
+    justify-content: center;
+  }
+
+  .imageDetail{
+    max-height: 350px;
+    width: auto;
+  }
+}
+
+/* Navbar */
+
+.navbarTitle:hover{
+  text-shadow: 0 0 1px black;
+}
+
+/* Card */
+
+.card:hover{
+  box-shadow: 0 0px 10px -4px #524c4c;
+}
+
+.card-container{
+  display: flex;
+  align-items: center;
+  min-height: 300px;
+}
+
+.card-img-top{
+  max-height: 300px;
+  width: 100%;
+}
+
+.detailApplicantSpace{
+  width: 290px;
+}
+
+/* Register */
+
+.imageRegister{
+  width: 75%;
+}
+
+@media screen and (min-width: 577px) {
+  .imageRegister{
+    width: 35%;
+    max-height: 250px;
+  }
+
+  .icon-regist {
+    width: 20%!important;
+    margin: 1rem auto!important;
+    display: block !important;
+  }
 }

@@ -1,14 +1,13 @@
 import Together from "./../assets/Together-pana.svg";
 import { Link, useNavigate } from "react-router-dom";
 import "./../assets/style.css";
+import Navbar from "../layout/Navbar";
 
 const RegisterTypeAccount = () => {
   const navigate = useNavigate();
-  // const handleButtonApplicant =()=> {
-  //     navigate('/register-applicant')
-  // }
   return (
     <section className="w-100 mx-auto">
+      <Navbar/>
       <div className="row mt-2 w-100 mx-auto">
         <Link
           to={"/login"}

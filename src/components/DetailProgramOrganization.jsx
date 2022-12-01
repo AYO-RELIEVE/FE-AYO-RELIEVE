@@ -4,6 +4,7 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const DetailProgramOrganization = () => {
 
@@ -71,20 +72,29 @@ const DetailProgramOrganization = () => {
     
     console.log(program)
     console.log('ini applyers: ', applyers)
+    // console.log('ini type img: ', typeof program.thumbnail)
     
     return (
         <>
             { program !== null &&
                 <>
                     <Navbar/>
-                    <section className="container text-md-start py-5 py-md-5 px-md-0">
+                    <section className="container text-md-start py-4 py-md-4 px-md-0">
+                        <Link className="buttonBackContainer d-flex" to={`/allprogram`} >
+                            <div className='buttonBackIconContainer'>
+                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
+                            </div>
+                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
+                                Kembali
+                            </div>
+                        </Link>
                         <div
                             className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
                         >
-                            <div className="">
+                            <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
-                                    src={Together}
-                                    className="img-fluid w-100 w-md-50 col-2 order-1 order-md-1 mx-md-0 rounded"
+                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                                    className="imageDetail img-fluid col-2 order-1 order-md-1 mx-md-0 rounded"
                                     alt="together-pana"
                                 />
                             </div>

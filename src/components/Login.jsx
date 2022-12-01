@@ -36,7 +36,7 @@ const Login = () => {
             await axios(config)
             .then(function (response) {
                 console.log('Respon API:', response)
-                dispatch(userSlice.actions.addUser({ userData: email }));
+                dispatch(userSlice.actions.addUser({ userData: data }));
                 localStorage.setItem('Email', email)
                 localStorage.setItem ('Status', "Logged in")
                 localStorage.setItem ('token', response.data.data.token)
@@ -83,7 +83,7 @@ const Login = () => {
             </div>
             <div className="row">
                 <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
-                <img src={Together} className="w-50" alt="" />
+                <img src={Together} className="imageRegister mx-4 px-4" alt="" />
                 <div className="w-100 px-5">
                     <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email</label>

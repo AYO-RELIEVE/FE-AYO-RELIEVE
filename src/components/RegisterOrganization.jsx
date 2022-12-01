@@ -2,89 +2,73 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import Together from "./../assets/Together-pana.svg";
+import "./../assets/style.css";
+import Navbar from "../layout/Navbar";
+import axios from "axios";
 
 const RegisterOrganization = () => {
-      const navigate = useNavigate();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [phone_number, setPhone_number] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [photo, setPhoto] = useState("");
   const [status, setStatus] = useState("organization");
   const [description, setDescription] = useState("");
   const [sector, setSector] = useState("");
   const [media_social, setMedia_social] = useState("");
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    signUpOrganization()
-    console.log(
-      name,
-      phone_number,
-      address,
-      email,
-      password,
-      status,
-      description,
-      sector,
-      media_social
-    );
+
+  const handlePhoto = (e) => {
+    console.log("event :", e);
+    setPhoto(e.target.files[0]);
   };
 
-  async function signUpOrganization() {
-    const data = {
-      name,
-      phone_number,
-      address,
-      email,
-      password,
-      status,
-      description,
-      sector,
-      media_social,
+  const signUpOrganization = () => {
+    var dataRegist = new FormData();
+    dataRegist.append('name', name);
+    dataRegist.append('photo', photo);
+    dataRegist.append('email', email);
+    dataRegist.append('password', password);
+    dataRegist.append('address', address);
+    dataRegist.append('phone_number', phone_number);
+    dataRegist.append('status', status);
+    dataRegist.append('description', description);
+    dataRegist.append('sector', sector);
+    dataRegist.append('media_social', media_social);
+
+    var config = {
+      method: 'post',
+      url: 'https://ayo-relieve.osorateam.com/api/auth/register',
+      headers: { 
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      },
+      data : dataRegist
     };
-    let result = await fetch(
-      "https://ayo-relieve.osorateam.com/api/auth/register",
-      {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      }
-    );
-        const res = await result.json();
-    if (res.message == "Register Success") {
-      swal({
-        title: "Registrasi Berhasil!",
-        icon: "success",
-        button: "OK!",
-      });
-      navigate('/login')
-    } else if (res.message !== "Register Success") {
-      swal({
-        title: "Registrasi Gagal!",
-        text: res.message,
-        icon: "error",
-        button: "OK"
-      });
-    }
+
+    axios(config)
+    .then(function (response) {
+      console.log('respon register ', response);
+    })
+    .catch(function (error) {
+      console.log('respon error ', error);
+    });
   }
   return (
     <section>
       <Navbar/>
-      <div className="row mt-5 w-100 mx-auto">
+      <div className="row my-5">
         <h1 className="text-center">
           <Link to="/" className="text-decoration-none heading">
             AYO.RELIEVE
           </Link>
         </h1>
       </div>
-      <div className="row w-100 mx-auto">
-        <div className="col-lg-6 mx-lg-auto col mx-3 justify-content-center align-items-center flex-sm-row shadow rounded-4">
-          <img src={Together} className="d-md-none" alt="" />
-          <h3 className="fw-bold mb-3 txt text-center py-3">Daftar Organisasi</h3>
-          <form onSubmit={handleSubmit} className="w-100 px-5">
+      <div className="row">
+        <div className="container d-flex flex-column justify-content-center flex-sm-row">
+          <img src={Together} className="imageRegister img-login mx-auto" alt="" />
+          <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
+          <div className="w-100 px-5">
             {/* Nama Organisasi */}
             <div className="mb-3">
               <label
@@ -100,6 +84,23 @@ const RegisterOrganization = () => {
                 className="form-control"
                 id="name"
                 placeholder="Nama Organisasi "
+                required
+              />
+            </div>
+            {/* Foto Program */}
+            <div className="mb-3">
+              <label
+                htmlFor="exampleInputEmail1"
+                className="form-label fw-bold"
+              >
+                Foto Profil<span className="p-0 m-0 text-danger">*</span>
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                id="photo"
+                onChange={handlePhoto}
+                placeholder="Foto Profil"
                 required
               />
             </div>
@@ -218,14 +219,14 @@ const RegisterOrganization = () => {
                 required
               />
             </div>
-            <button className="btn btn-primary button">Daftar</button>
+            <button onClick={signUpOrganization} className="btn btn-primary button">Daftar</button>
             <p className="mt-3">
               Sudah memiliki akun? 
               <Link to="/login" className="text-decoration-none heading mx-1">
                 Masuk
               </Link>
             </p>
-          </form>
+          </div>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import Together from "./../assets/Together-pana.svg";
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import './../assets/style.css'
 import Navbar from '../layout/Navbar'
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const DetailApplicant = () => {
 
@@ -35,6 +36,22 @@ const DetailApplicant = () => {
                 console.log(err);
             });
     }, []);
+      
+    useEffect(() => {
+        axios
+            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            })
+            .then((res) => {
+                setApplyers(res.data.data);
+                console.log('ini res: ', res)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [applyers]);
 
     const handleApprove = (id) => {
         var config = {
@@ -100,17 +117,22 @@ const DetailApplicant = () => {
             { program !== null &&
                 <>
                     <Navbar/>
-                    <section className="container text-md-start py-5 py-md-5 px-md-0">
-                        <Link to={`/detailprogramorganization/${program.id}`} style={{textDecoration: 'none'}}>
-                            Kembali
+                    <section className="container text-md-start py-4 py-md-4 px-md-0">
+                        <Link className="buttonBackContainer d-flex" to={`/detailprogramorganization/${program.id}`} >
+                            <div className='buttonBackIconContainer'>
+                                <BsArrowLeftCircle className='buttonBackIcon' style={{textDecoration: 'none'}}/>
+                            </div>
+                            <div className='buttonBackText' style={{textDecoration: 'none'}}>
+                                Kembali
+                            </div>
                         </Link>
                         <div
                             className="container d-flex flex-column justify-content-center align-items-center flex-md-row"
                         >
-                            <div className="">
+                            <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
-                                    src={Together}
-                                    className="img-fluid w-100 w-md-50 col-2 order-1 order-md-1 mx-md-0 rounded"
+                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                                    className="imageDetail img-fluid col-2 order-1 order-md-1 mx-md-0 rounded"
                                     alt="together-pana"
                                 />
                             </div>
@@ -128,7 +150,7 @@ const DetailApplicant = () => {
                                         {program.title}
                                     </p>
                                 </div>
-                                <div className="d-flex">
+                                <div className="d-flex detailApplicantSpace">
                                     <h6 className="fw-bold">
                                         Dibuka s/d: {program.end_date}
                                     </h6>
@@ -150,6 +172,7 @@ const DetailApplicant = () => {
                                         <tr>
                                         <th scope="col"></th>
                                         <th scope="col">Nama</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col">Options</th>
                                         </tr>
                                     </thead>
@@ -165,6 +188,9 @@ const DetailApplicant = () => {
                                                                 </th>
                                                                 <td>
                                                                     {applicants.name}
+                                                                </td>
+                                                                <td>
+                                                                    {applicants.Program_Users.status}
                                                                 </td>
                                                                 <td className="d-flex gap-2">
                                                                     <button 
