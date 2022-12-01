@@ -198,6 +198,11 @@ footer>* {
   margin: 1rem auto!important;
   display: block !important;
 }
+.icon-regist {
+  width: 50%!important;
+  margin: 1rem auto!important;
+  display: block !important;
+}
 
 
 .active:hover {
@@ -212,5 +217,10 @@ footer>* {
   width: 25%!important;
   margin: 1rem auto!important;
   display: block!important;
+}
+.icon-regist {
+  width: 20%!important;
+  margin: 1rem auto!important;
+  display: block !important;
 }
 }
