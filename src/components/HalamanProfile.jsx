@@ -34,32 +34,6 @@ const HalamanProfile = () => {
                     <div className={detail.disability? ".status-disab" : "status"}>{detail.disability? "Penyandang Disabilitas" : "Bukan Penyandang Disabilitas"}</div>
                     <h5>{detail.profession}</h5>
                     <div>{profile.email}</div>
-                    {/* {program.map((programs) => {
-                        return (
-                            <>
-                                {            
-                                    (localStorage.getItem('CampaignJoined') == programs.id) && (
-                                        <div className="profileJoinedCampaign">
-                                            <img
-                                                className="profileJoinedCampaignImage"
-                                                src={programs.partner.logo}
-                                            />
-                                            <div className="profileJoinedCampaignName">
-                                                {programs.nama_program}
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            </>
-                        )
-                    })}
-                    {            
-                        (localStorage.getItem('CampaignJoined') == 0) && (
-                            <div className="profileNotJoined">
-                                Anda belum mendaftar program
-                            </div>
-                        )
-                    } */}
                 </div>
             </div>
         </section>

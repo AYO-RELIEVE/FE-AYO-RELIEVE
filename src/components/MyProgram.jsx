@@ -43,15 +43,16 @@ const MyProgram = () => {
         <Link to={"/active-program"} className="text-decoration-none text-black"> <h6>Program Aktif</h6></Link>
       </div>
       {/* card */}
-      {statusApplyProgram.length == 0? (
-        <div className="px-5">
-          <img src={FindIcon} alt="Looking for Program" />
+      <section className="row justify-content-center w-100 mx-auto">
+{statusApplyProgram.length == 0? (
+        <div className="px-5 my-5">
+          <img src={FindIcon} alt="Looking for Program"  className="icon"/>
           <h4 className="text-center">Kamu belum mengikuti program apapun</h4>
         </div>
       ): (
         statusApplyProgram.map((program) => {
         return (
-            <div key ={program.id}className="shadow-sm border-1 border rounded-2 border-secondary px-2 mx-4 py-2 d-flex gap-2 align-items-center my-3 justify-content-center">
+            <div key ={program.id} className="col col-md-3 col-lg-3 shadow-sm border-1 border rounded-2 border-secondary px-2 mx-4 py-2 d-flex gap-2 align-items-center my-3 justify-content-center">
               <div className="flex-shrink-1 w-75">
                 <img
                   className="w-100"
@@ -78,6 +79,8 @@ const MyProgram = () => {
         );
       })
       )}
+      </section>
+      
       
     </section>
   );

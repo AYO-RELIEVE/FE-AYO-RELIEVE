@@ -147,9 +147,9 @@ footer>* {
 .status {
   background-color: #4e93fa;
   border-radius: 20px;
-  width: 80%;
+  /* width: 80%; */
   margin: 10px auto;
-  padding: 3px 0px;
+  padding: 3px 20px;
   color: white;
 }
 
@@ -157,9 +157,9 @@ footer>* {
 .status-disab {
   background-color: #12C924;
   border-radius: 20px;
-  width: 80%;
+  /* width: 80%; */
   margin: 10px auto;
-  padding: 3px 0px;
+  padding: 3px 20px;
   color: white;
 }
 
@@ -193,6 +193,13 @@ footer>* {
   transition: all 0.5s;
 }
 
+.icon {
+  width: 100%!important;
+  margin: 1rem auto!important;
+  display: block !important;
+}
+
+
 .active:hover {
   cursor: pointer;
 }
@@ -201,4 +208,9 @@ footer>* {
   .halamanProfile {
     margin: 40px auto;
   }
+  .icon {
+  width: 25%!important;
+  margin: 1rem auto!important;
+  display: block!important;
+}
 }
