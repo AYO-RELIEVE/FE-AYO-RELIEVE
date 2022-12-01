@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../layout/Navbar";
 import Together from "./../assets/Together-pana.svg";
 import "./../assets/style.css";
 import Navbar from "../layout/Navbar";

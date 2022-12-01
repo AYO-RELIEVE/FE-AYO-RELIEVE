@@ -64,7 +64,7 @@ const Login = () => {
         } catch (error) {
             console.log(error);
             swal({
-              title: "Registrasi Gagal!",
+              title: "Login Gagal!",
               text: 'Terjadi kesalahan. Cek email atau password anda!',
               icon: "error",
               button: "OK"

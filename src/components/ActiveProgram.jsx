@@ -38,7 +38,7 @@ const ActivepProgram = ()=> {
       {/* card */}
       <section  className="row justify-content-center w-100 mx-auto">
       {activeProgram.length == 0? (
-        <div className="px-5">
+        <div className="px-5 my-5">
           <img src={FindIcon} alt="Looking for Program" className="icon"/>
           <h4 className="text-center">Kamu belum mengikuti program apapun</h4>
         </div>
