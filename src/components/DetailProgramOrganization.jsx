@@ -7,65 +7,73 @@ import Navbar from '../layout/Navbar'
 import { BiArrowBack } from "react-icons/bi";
 import Company from "./../assets/Company.jpg"
 
-const DetailProgram = () => {
+const DetailProgramOrganization = () => {
 
     const params = useParams()
     const navigate = useNavigate()
     const [program, setProgram] = useState(null)
+    const [applyers, setApplyers] = useState([])
       
     useEffect(() => {
-        var config = {
-            method: 'get',
-            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+        axios
+            .get(`http://ayo-relieve.osorateam.com/api/programs/${params.id}`)
+            .then((res) => {
+                setProgram(res.data.data);
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+        axios
+            .get(`http://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-          };
-          axios(config)
-              .then((res) => {
-                  setProgram(res.data.data);
-                  console.log('ini res baru: ', res)
-              })
-              .catch((err) => {
-                  console.log(err)
-              });
+                },
+            })
+            .then((res) => {
+                setApplyers(res.data.data);
+                console.log('ini res: ', res)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
-    
-    console.log(program)
 
-    const joinCampaign = () => {
+    const hapusProgram = () => {
+        var data = JSON.stringify({
+            "name": "Haii"
+        });
 
         var config = {
-            method: 'post',
-            url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}/apply`,
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            method: 'delete',
+            url: `http://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+            headers: { 
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json'
             },
-        };
-        
-        axios(config)
-        .then(function (response) {
-            console.log(response)
-            if (response.status == 200){ 
-                swal({
-                  title: "Anda berhasil mendaftar!",
-                  icon: "success",
-                  button: "Ok",
-                });
-            }
-            window.location.reload()
-        })
-        .catch((error) => {
-            console.log('message eroor: ', error)
-            if (error.response.data.message == "You have already applied for this program"){
-                swal({
-                  title: "Anda telah mendaftar program ini.",
-                  icon: "error",
-                  button: "Tutup",
-                });
-            }
-        })
+            data : data
+          };
+          
+          axios(config)
+          .then(function (response) {
+            swal({
+              title: "Program berhasil dihapus!",
+              icon: "success",
+              button: "OK!",
+            });
+            navigate('/allprogram')
+          })
+          .catch(function (error) {
+            swal({
+              title: "Program gagal dihapus. Coba lagi!",
+              icon: "error",
+              button: "OK!",
+            });
+          });
     }
+    
+    console.log(program)
+    console.log('ini applyers: ', applyers)
+    // console.log('ini type img: ', typeof program.thumbnail)
     
     return (
         <>
@@ -88,7 +96,7 @@ const DetailProgram = () => {
                                     alt="together-pana"
                                 />
                             </div>
-                            <div className="w-100 w-lg-50 order-2 order-md-2 mt-4 mt-md-0 px-md-4">
+                            <div className="order-2 order-md-2 mt-4 mt-md-0 px-md-4">
                                 <h1 className="fw-bold">
                                     {program.title}
                                 </h1>
@@ -107,44 +115,16 @@ const DetailProgram = () => {
                                         Dibuka s/d: {program.end_date}
                                     </h6>
                                 </div>
-                                <div className="button-joined">
-                                    {
-                                        program.applicant.length == 0 &&
-                                            <div>
-                                                <button className="btn button mt-2 mt-lg-0" onClick={joinCampaign}>
-                                                    Join Program
-                                                </button>
-                                            </div>
-                                    }
-                                    {
-                                        program.applicant.length != 0 &&
-                                            <>
-                                                {
-                                                    (program.applicant[0].Program_Users.status == "Diterima") &&
-                                                        <div>
-                                                            <button disabled className="btn btn-success mt-2 mt-lg-0">
-                                                                Anda Telah Diterima
-                                                            </button>
-                                                        </div>
-                                                }
-                                                {
-                                                    (program.applicant[0].Program_Users.status == "Ditolak") &&
-                                                        <div>
-                                                            <button disabled className="btn btn-danger mt-2 mt-lg-0">
-                                                                Anda Telah Ditolak
-                                                            </button>
-                                                        </div>
-                                                }
-                                                {
-                                                    (program.applicant[0].Program_Users.status == "Menunggu") &&
-                                                        <div>
-                                                            <button disabled className="btn btn-secondary mt-2 mt-lg-0">
-                                                                Menunggu Seleksi
-                                                            </button>
-                                                        </div>
-                                                }
-                                            </>
-                                    }
+                                <div className="button-joined d-flex">
+                                    <Link to={`/detailapplicant/${program.id}`} className="btn btn-success mt-2 mt-lg-0 d-flex justify-content-center align-items-center">
+                                        Pendaftar
+                                    </Link>
+                                    <Link to={`/editprogram/${program.id}`} className="btn button mt-2 mt-lg-0 mx-2 d-flex justify-content-center align-items-center">
+                                        Edit Program
+                                    </Link>
+                                    <button className="btn btn-danger mt-2 mt-lg-0 d-flex justify-content-center align-items-center" onClick={hapusProgram}>
+                                        Hapus Program
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -178,4 +158,4 @@ const DetailProgram = () => {
     )
 }
 
-export default DetailProgram
+export default DetailProgramOrganization

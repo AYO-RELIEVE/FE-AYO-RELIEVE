@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Card = (props) => {
   return (
     <>
-      <div className="card" style={{ width: "22rem" }}>
+      {/* <div className="card" style={{ width: "22rem" }}>
         <img
           src={props.poster}
           alt=""
@@ -19,7 +19,7 @@ const Card = (props) => {
             <Link to={`/detailprogram/${props.idProgram}`}>Detail</Link>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

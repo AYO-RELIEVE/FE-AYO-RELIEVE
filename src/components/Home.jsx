@@ -4,15 +4,33 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
+import Navbar from "../layout/Navbar";
+import Company from "./../assets/Company.jpg"
 
 const Home = () => {
   const [program, setProgram] = useState([]);
+  const [status, setStatus] = useState("");
+  const programLength = program.length
+  const programLengthStart = program.length-3
 
   useEffect(() => {
     axios
-      .get(`https://634f91da78563c1d82a9bced.mockapi.io/new-program`, {})
+      .get(`http://ayo-relieve.osorateam.com/api/programs`, {})
       .then((res) => {
-        setProgram(res.data);
+        setProgram(res.data.data);
+        console.log('ini res: ', res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios
+      .get(`http://ayo-relieve.osorateam.com/api/auth/me`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+      })
+      .then((res) => {
+        setStatus(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -20,9 +38,11 @@ const Home = () => {
   }, []);
 
   console.log(program);
+  console.log('ini status user: ', status)
 
   return (
     <>
+      <Navbar/>
       <section className="container text-md-start py-5 py-md-0 px-md-0">
         <div className="container d-flex flex-column justify-content-center align-items-center mx-auto flex-md-row">
           <div className="order-2 order-md-1">
@@ -34,6 +54,11 @@ const Home = () => {
               berbagai program untuk mengatasi isu pandemi, perubahan iklim, dan
               pemanasan global
             </p>
+            <div className="d-md-block d-lg-block">
+              <Link className="btn button" to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
+                Lihat Semua Program
+              </Link>
+            </div>
           </div>
           <img
             src={Together}
@@ -93,50 +118,57 @@ const Home = () => {
         <div className="container px-4">
           <h1 className="text-center text-md-start">Program Terbaru</h1>
           <div className="container-card mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.slice(0, 3).map((programs, index) => {
+            {program.slice(programLengthStart, programLength).map((programs, index) => {
               return (
-                <Card
-                  key={index}
-                  poster={programs.poster}
-                  name={programs.nama_program}
-                  partnerLogo={programs.partner.logo}
-                  partnerName={programs.partner.nama}
-                  idProgram={programs.id}
-                />
+                <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
+                  <div className="card-container">
+                    <img
+                      src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
+                      alt=""
+                      className="card-img-top"
+                    />
+                  </div>
+                  <div className="card-body d-flex flex-column gap-2">
+                    <h5 className="card-title">{programs.title}</h5>
+                    <div className="d-flex align-items-center justify-content-between gap-2">
+                      <div className="d-flex align-items-center gap-2">
+                        <img 
+                          src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
+                          className="image-pt" 
+                        />
+                        <div className="">{programs.organization.name}</div>
+                      </div>
+                      <Link 
+                        style={{ textDecoration: 'none' }}
+                        to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'}
+                        className="buttonDetailHome"
+                      >
+                        Detail
+                      </Link>
+                    </div>
+                  </div>
+                </Link>
+                // <Card
+                //   key={index}
+                //   poster={programs.poster}
+                //   name={programs.nama_program}
+                //   partnerLogo={programs.partner.logo}
+                //   partnerName={programs.partner.nama}
+                //   idProgram={programs.id}
+                // />
               );
             })}
           </div>
         </div>
       </section>
-
-      <section className="py-5 program-disab">
-        <div className="container px-4">
-          <h1 className="text-center text-md-start">
-            Disabilitas Bukan Hambatan
-          </h1>
-          <div className="container-card-disabilitas mt-4 d-flex flex-column align-items-center justify-content-center gap-4 flex-md-row justify-content-md-around">
-            {program.slice(7, 10).map((programs) => {
-              return (
-                <Card
-                  key={programs.id}
-                  poster={programs.poster}
-                  name={programs.nama_program}
-                  partnerLogo={programs.partner.logo}
-                  partnerName={programs.partner.nama}
-                  idProgram={programs.id}
-                />
-              );
-            })}
-          </div>
-          <div className="mx-auto d-flex justify-content-center mt-5">
-            <button className="btn button shadow-sm">
-              <Link to="/allprogram" className="text-decoration-none a">
-                Lihat Program Lainnya
-              </Link>
-            </button>
-          </div>
-        </div>
-      </section>
+      
+      <div className="mx-auto d-flex justify-content-center mt-0">
+        <button className="btn buttonHome shadow-sm">
+          <Link to={localStorage.getItem('Email') ? "/allprogram" : '/login'} style={{textDecoration: 'none'}}>
+            Lihat Semua Program
+          </Link>
+        </button>
+      </div>
     </>
   );
 };
