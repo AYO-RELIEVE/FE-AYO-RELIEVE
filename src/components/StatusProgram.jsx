@@ -4,6 +4,8 @@ import Company from "./../assets/Company.jpg"
 import Together from "./../assets/Together-pana.svg";
 
 const StatusProgram = (props) => {
+  console.log('ni props: ', props)
+  console.log('ni props stat: ', props.status)
   return (
     <>
         <div className="flex-shrink-1 w-75">
@@ -24,9 +26,24 @@ const StatusProgram = (props) => {
             <p className="">{props.name}</p>
             </div>
         </div>
-        <p className={props.status == "Menunggu" ? "status-seleksi-pending text-white text-center d-flex align-content-center justify-content-center" : "status-seleksi-reject text-white text-center d-flex align-content-center justify-content-center"}>
-            {props.status}
-        </p>
+        {
+          (props.status == "Menunggu") &&
+            <p className={"status-seleksi-pending text-white text-center d-flex align-content-center justify-content-center"}>
+              {props.status}
+            </p>
+        }
+        {
+          (props.status == "Diterima") &&
+            <p className="status-seleksi-approve text-white text-center d-flex align-content-center justify-content-center">
+              {props.status}
+            </p>
+        }
+        {
+          (props.status == "Ditolak") &&
+            <p className={"status-seleksi-reject text-white text-center d-flex align-content-center justify-content-center"}>
+              {props.status}
+            </p>
+        }
         </div>
     </>
   )
