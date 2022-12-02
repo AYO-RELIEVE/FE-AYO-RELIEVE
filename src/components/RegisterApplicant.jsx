@@ -102,7 +102,7 @@ const RegisterApplicant = () => {
         </div>
         <div className="row">
           <div className="container d-flex flex-column justify-content-center flex-sm-row">
-            <img src={Together} className="imageRegister" alt="" />
+            <img src={Together} className="imageRegister img-login mx-auto" alt="" />
             <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
             <div className="w-100 px-5">
               {/* /// Nama Lengkap //// */}
