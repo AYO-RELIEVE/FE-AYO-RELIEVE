@@ -35,6 +35,10 @@ const DetailProgramOrganization = () => {
             .catch((err) => {
                 console.log(err);
             });
+            
+        if (localStorage.getItem('Email') == null) {
+            navigate("/login")
+        }
     }, []);
 
     const hapusProgram = () => {

@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import FindIcon from "./../assets/find-program.svg";
 import StatusProgram from "./StatusProgram";
 
 const ActivepProgram = ()=> {
+  const navigate = useNavigate()
   const [program, setProgram] = useState([]);
 
   useEffect(() => {
@@ -21,6 +22,10 @@ const ActivepProgram = ()=> {
       .catch((err) => {
         console.log(err);
       });
+            
+    if (localStorage.getItem('Email') == null) {
+        navigate("/login")
+    }
   }, []);
 
   const activeProgram = program.filter((program)=> program.Program_Users.status == "Diterima").map((program)=> {

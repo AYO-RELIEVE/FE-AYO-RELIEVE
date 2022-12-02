@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './../assets/style.css'
 import axios from 'axios'
 import ProfileMan from "./../assets/ProfileMan.jpg"
@@ -9,6 +10,8 @@ import Address from './../assets/location.png'
 import Phone from './../assets/phone.png'
 
 const HalamanProfile = () => {
+    const navigate = useNavigate()
+
     const [profile, setProfile] = useState({})
     const [detail, setDetail]  = useState({})
     const statusUser = localStorage.getItem("statusUser")
@@ -17,8 +20,8 @@ const HalamanProfile = () => {
         axios
             .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
                 headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
             })
             .then((res) => {
                 setProfile(res.data.data)
@@ -27,6 +30,10 @@ const HalamanProfile = () => {
             .catch((err) => {
                 console.log(err)
             });
+            
+        if (localStorage.getItem('Email') == null) {
+            navigate("/login")
+        }
             
     }, []);
 

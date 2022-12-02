@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Together from "./../assets/Together-pana.svg";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
 import Navbar from '../layout/Navbar'
 import AboutUs from "./AboutUs";
 
 const HomeOrganization = () => {
+    const navigate = useNavigate()
     const [program, setProgram] = useState([]);
     const [applyers, setApplyers] = useState([]);
     const [status, setStatus] = useState([]);
@@ -39,6 +40,10 @@ const HomeOrganization = () => {
             .catch((err) => {
                 console.log(err);
             });
+            
+        if (localStorage.getItem('Email') == null) {
+            navigate("/login")
+        }
     }, []);
 
     return (

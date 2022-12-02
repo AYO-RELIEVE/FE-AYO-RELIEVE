@@ -8,7 +8,7 @@ import { BiArrowBack } from "react-icons/bi";
 import Company from "./../assets/Company.jpg"
 
 const DetailProgram = () => {
-
+    const navigate = useNavigate()
     const params = useParams()
     const [program, setProgram] = useState(null)
       
@@ -27,6 +27,10 @@ const DetailProgram = () => {
               .catch((err) => {
                   console.log(err)
               });
+            
+        if (localStorage.getItem('Email') == null) {
+            navigate("/login")
+        }
     }, []);
     
     console.log(program)

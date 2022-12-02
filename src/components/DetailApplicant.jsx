@@ -7,7 +7,7 @@ import Navbar from '../layout/Navbar'
 import { BiArrowBack } from "react-icons/bi";
 
 const DetailApplicant = () => {
-
+    const navigate = useNavigate()
     const params = useParams()
     const [program, setProgram] = useState(null)
     const [applyers, setApplyers] = useState([])
@@ -33,6 +33,10 @@ const DetailApplicant = () => {
             .catch((err) => {
                 console.log(err);
             });
+            
+        if (localStorage.getItem('Email') == null) {
+            navigate("/login")
+        }
     }, []);
       
     useEffect(() => {

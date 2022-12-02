@@ -38,6 +38,10 @@ const EditProgram = () => {
       .catch((err) => {
           console.log(err)
       });
+            
+    if (localStorage.getItem('Email') == null) {
+        navigate("/login")
+    }
   }, []);
 
   const handleImage = (e) => {
