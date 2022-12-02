@@ -35,7 +35,6 @@ const Login = () => {
           
             await axios(config)
             .then(function (response) {
-                console.log('Respon API:', response)
                 dispatch(userSlice.actions.addUser({ userData: data }));
                 localStorage.setItem('Email', email)
                 localStorage.setItem ('Status', "Logged in")

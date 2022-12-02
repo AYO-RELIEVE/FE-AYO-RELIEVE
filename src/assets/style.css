@@ -49,6 +49,11 @@ span {
   width: 20px;
 }
 
+.imgOrganization{
+  width: 30px;
+  border-radius: 50%;
+}
+
 .link {
   color: white !important;
 }
@@ -82,15 +87,37 @@ footer>* {
 .campaign-logo {
   width: 30px;
   margin-right: 15px;
+  border-radius: 50%;
 }
 
 /* Halaman Profile */
 
 .profilOrganization{
   background-color: #4e93fa;
+  margin-top: 20px;
+  padding: 5px 20px;
+  border-radius: 30px;
+  font-weight: 500;
+  color: #29325d;
+  transition-duration: 0.3s;
+}
+
+.profilOrganization:hover{
+  background-color: #2079ff;
+}
+
+.sectorOrganization{
+  background-color: #fbfd78;
   margin-top: 10px;
   padding: 5px 20px;
   border-radius: 30px;
+  font-weight: 500;
+  color: #29325d;
+  transition-duration: 0.3s;
+}
+
+.sectorOrganization:hover{
+  background-color: #fbff00;
 }
 
 .profile {
@@ -113,9 +140,14 @@ footer>* {
   width: 150px;
   height: auto;
   margin: 20px 0px;
-  padding: 10px;
+  padding: 5px;
   background-color: #83b5ff;
   border-radius: 50%;
+  transition-duration: 0.3s;
+}
+
+.profilePicture:hover {
+  background-color: #4e93fa;
 }
 
 .profileJoinedCampaign {
@@ -129,6 +161,11 @@ footer>* {
 
 .profileNotJoined {
   font-style: italic;
+}
+
+.profileIcon{
+  width: 30px;
+  border-radius: 50%;
 }
 
 .btn-type-acc {
@@ -156,17 +193,14 @@ footer>* {
 .status {
   background-color: #4e93fa;
   border-radius: 20px;
-  /* width: 80%; */
   margin: 10px auto;
   padding: 3px 20px;
   color: white;
 }
 
-
 .status-disab {
   background-color: #12C924;
   border-radius: 20px;
-  /* width: 80%; */
   margin: 10px auto;
   padding: 3px 20px;
   color: white;
@@ -176,7 +210,7 @@ footer>* {
   background-color: #4e93fa;
   border-radius: 20px;
   width: 80%;
-  padding: 0px 10px;
+  padding: 0px 20px;
   margin: 0;
 }
 
@@ -184,7 +218,7 @@ footer>* {
   background-color: #dc3545;
   border-radius: 20px;
   width: 80%;
-  padding: 0px 10px;
+  padding: 0px 20px;
   margin: 0;
 }
 
@@ -236,6 +270,7 @@ footer>* {
   padding: 5px 15px;
   border-radius: 20px;
   color: white;
+  transition-duration: 0.4s;
 }
 
 .buttonDetailHome:hover{
@@ -267,6 +302,7 @@ footer>* {
   background-color: white;
   border: 1px solid #4e93fa;
   color: #4e93fa;
+  transition-duration: 0.4s;
 }
 
 .buttonHome:hover{
@@ -310,12 +346,15 @@ footer>* {
 .card-container{
   display: flex;
   align-items: center;
-  min-height: 300px;
+  height: 225px;
 }
 
 .card-img-top{
-  max-height: 300px;
-  width: 100%;
+  max-height: 225px;
+  background-size: cover;
+  /* background-image: cover; */
+  /* width: 100%;
+  height: auto; */
 }
 
 .detailApplicantSpace{
@@ -348,6 +387,7 @@ footer>* {
   border-radius: 20px;
   background-color: #4e93fa;
   color: white;
+  transition-duration: 0.4s;
 }
 
 .buttonKembali:hover{
@@ -360,6 +400,7 @@ footer>* {
   border-radius: 20px;
   background-color: #a8cbff;
   color: #29325d;
+  transition-duration: 0.4s;
 }
 
 .buttonKembaliAllProgram:hover{
@@ -380,6 +421,7 @@ footer>* {
   border-radius: 20px;
   background-color: #a8cbff;
   color: #29325d;
+  transition-duration: 0.4s;
 }
 
 .buttonKembaliDetailProgram:hover{
@@ -397,6 +439,7 @@ footer>* {
   font-size: 20px;
   font-weight: 700;
   color: white;
+  transition-duration: 0.4s;
 }
 
 .buttonSplit:hover{
@@ -445,4 +488,3 @@ footer>* {
     grid-template-columns: repeat(6, auto);
   }  
 }
-

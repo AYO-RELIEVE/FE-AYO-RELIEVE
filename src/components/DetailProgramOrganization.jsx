@@ -31,7 +31,6 @@ const DetailProgramOrganization = () => {
             })
             .then((res) => {
                 setApplyers(res.data.data);
-                console.log('ini res: ', res)
             })
             .catch((err) => {
                 console.log(err);
@@ -71,10 +70,6 @@ const DetailProgramOrganization = () => {
           });
     }
     
-    console.log(program)
-    console.log('ini applyers: ', applyers)
-    // console.log('ini type img: ', typeof program.thumbnail)
-    
     return (
         <>
             { program !== null &&
@@ -100,15 +95,15 @@ const DetailProgramOrganization = () => {
                                 <h1 className="fw-bold">
                                     {program.title}
                                 </h1>
-                                <div className="d-flex">
+                                <div className="d-flex align-items-center">
                                     <img
                                         src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
-                                    <p className="my-3 text-start">
-                                        {program.title}
-                                    </p>
+                                    <h5 className="my-3 text-start">
+                                        {program.organization.name}
+                                    </h5>
                                 </div>
                                 <div className="d-flex">
                                     <h6 className="fw-bold">
@@ -119,7 +114,7 @@ const DetailProgramOrganization = () => {
                                     <Link to={`/detailapplicant/${program.id}`} className="btn btn-success mt-2 mt-lg-0 d-flex justify-content-center align-items-center">
                                         Pendaftar
                                     </Link>
-                                    <Link to={`/editprogram/${program.id}`} className="btn button mt-2 mt-lg-0 mx-2 d-flex justify-content-center align-items-center">
+                                    <Link to={`/editprogram/${program.id}`} className="btn btn-primary mt-2 mt-lg-0 mx-2 d-flex justify-content-center align-items-center">
                                         Edit Program
                                     </Link>
                                     <button className="btn btn-danger mt-2 mt-lg-0 d-flex justify-content-center align-items-center" onClick={hapusProgram}>
@@ -148,6 +143,14 @@ const DetailProgramOrganization = () => {
                                 </h4>
                                 <p className="my-3 text-start">
                                     {program.qouta} Orang
+                                </p>
+                            </div>
+                            <div className="order-2 order-md-1">
+                                <h4 className="fw-bold">
+                                    Syarat dan Ketentuan
+                                </h4>
+                                <p className="my-3 text-start">
+                                    {program.rules}
                                 </p>
                             </div>
                         </div>

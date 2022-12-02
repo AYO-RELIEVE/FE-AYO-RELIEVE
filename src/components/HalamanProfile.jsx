@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import './../assets/style.css'
 import axios from 'axios'
-import Icon from "../assets/Icon.png"
 import ProfileMan from "./../assets/ProfileMan.jpg"
 import ProfileGirl from "./../assets/ProfileGirl.jpg"
 import Company from "./../assets/Company.jpg"
 import Navbar from "../layout/Navbar";
+import Address from './../assets/location.png'
+import Phone from './../assets/phone.png'
 
 const HalamanProfile = () => {
     const [profile, setProfile] = useState({})
@@ -29,10 +30,6 @@ const HalamanProfile = () => {
             
     }, []);
 
-    console.log(profile)
-    console.log(detail)
-    
-
     return(
         <>
             <Navbar/>
@@ -52,7 +49,6 @@ const HalamanProfile = () => {
                                 }
                                 {
                                     (profile.photo == null) &&
-                                    // <></>
                                     <img src={detail.gender == 'Pria' ? ProfileMan : ProfileGirl } alt="icon-profile" className="profilePicture"/>
                                 }
                             </>
@@ -68,11 +64,26 @@ const HalamanProfile = () => {
                             </>
                         }
                         <div>{profile.email}</div>
+                        <div className="my-3 d-flex flex-column justify-content-center align-items-center">
+                            <div className="d-flex align-items-center gap-1">
+                                <img className="profileIcon" src={Address}/>
+                                <div>{profile.address}</div>
+                            </div>
+                            <div className="d-flex align-items-center gap-1">
+                                <img className="profileIcon" src={Phone}/>
+                                <div>{profile.phone_number}</div>
+                            </div>
+                        </div>
                         {
                             (profile.status == 'organization') &&
-                                <div className="profilOrganization">
-                                    Organization
-                                </div>
+                                <>
+                                    <div className="profilOrganization">
+                                        Organization
+                                    </div>
+                                    <div className="sectorOrganization">
+                                        {profile.user_organization_detail.sector}
+                                    </div>
+                                </>
                         }
                         {
                             (profile.status != 'organization') &&

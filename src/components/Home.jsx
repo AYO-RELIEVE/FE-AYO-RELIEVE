@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import "./../assets/style.css";
 import Card from "./Card";
 import Navbar from "../layout/Navbar";
-import Company from "./../assets/Company.jpg"
 import OurTeam from "./OurTeam";
+import AboutUs from "./AboutUs";
 
 const Home = () => {
   const [program, setProgram] = useState([]);
@@ -19,7 +19,6 @@ const Home = () => {
       .get(`https://ayo-relieve.osorateam.com/api/programs`, {})
       .then((res) => {
         setProgram(res.data.data);
-        console.log('ini res: ', res)
       })
       .catch((err) => {
         console.log(err);
@@ -37,9 +36,6 @@ const Home = () => {
         console.log(err);
       });
   }, []);
-
-  console.log(program);
-  console.log('ini status user: ', status)
 
   return (
     <>
@@ -69,51 +65,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="about py-5 py-md-5 px-md-0">
-        <div className="container px-4 text-center">
-          <h1>AYO Relieve!</h1>
-          <p className="w-75 mx-auto capt">
-            Platform untuk menghubungkan orang-orang di seluruh dunia yang ingin
-            memberikan dukungan kepada penyandang disabilitas maupun individu
-            lain secara berkelanjutan.
-          </p>
-          <div className="d-flex justify-content-center flex-column align-items-center gap-4 flex-md-row my-md-3 justify-content-md-evenly">
-            <div className="card text-start" style={{ width: "18rem" }}>
-              <div className="card-body">
-                <span className="material-symbols-outlined">
-                  volunteer_activism
-                </span>
-                <h5 className="card-title">Dapatkan Donasi</h5>
-                <p className="card-text">
-                  Cari bantuan yang cocok bagimu, daftar sebagai pelamar pada
-                  sebuah program.
-                </p>
-              </div>
-            </div>
-            <div className="card text-start" style={{ width: "18rem" }}>
-              <div className="card-body">
-                <span className="material-symbols-outlined">diversity_1</span>
-                <h5 className="card-title">Disabilitas</h5>
-                <p className="card-text">
-                  Bantu masyarakat penyandang disabilitas agar memiliki semangat
-                  untuk maju.
-                </p>
-              </div>
-            </div>
-            <div className="card text-start" style={{ width: "18rem" }}>
-              <div className="card-body">
-                <span className="material-symbols-outlined">
-                  sentiment_satisfied
-                </span>
-                <h5 className="card-title">Jadilah Penyalur</h5>
-                <p className="card-text">
-                  Bagikan kebahagianmu kepada orang lain yang lebih membutuhkan.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutUs/>
 
       <section className="py-5">
         <div className="container px-4">
@@ -122,41 +74,16 @@ const Home = () => {
             {program.slice(programLengthStart, programLength).map((programs, index) => {
               return (
                 <Link to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'} className="card" style={{ width: "22rem", textDecoration: 'none', color: '#29325d' }} key={index}>
-                  <div className="card-container">
-                    <img
-                      src={programs.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${programs.thumbnail}`}
-                      alt=""
-                      className="card-img-top"
-                    />
-                  </div>
-                  <div className="card-body d-flex flex-column gap-2">
-                    <h5 className="card-title">{programs.title}</h5>
-                    <div className="d-flex align-items-center justify-content-between gap-2">
-                      <div className="d-flex align-items-center gap-2">
-                        <img 
-                          src={programs.organization.photo ? `https://ayo-relieve.osorateam.com/${programs.organization.photo}` : Company}
-                          className="image-pt" 
-                        />
-                        <div className="">{programs.organization.name}</div>
-                      </div>
-                      <Link 
-                        style={{ textDecoration: 'none' }}
-                        to={localStorage.getItem('Email') ? `/detailprogram/${programs.id}` : '/login'}
-                        className="buttonDetailHome"
-                      >
-                        Detail
-                      </Link>
-                    </div>
-                  </div>
+                  <Card
+                    id={programs.id}
+                    key={index}
+                    thumbnail={programs.thumbnail}
+                    title={programs.title}
+                    photo={programs.organization.photo}
+                    name={programs.organization.name}
+                    status={status.status}
+                  />
                 </Link>
-                // <Card
-                //   key={index}
-                //   poster={programs.poster}
-                //   name={programs.nama_program}
-                //   partnerLogo={programs.partner.logo}
-                //   partnerName={programs.partner.nama}
-                //   idProgram={programs.id}
-                // />
               );
             })}
           </div>
