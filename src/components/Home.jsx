@@ -6,6 +6,7 @@ import "./../assets/style.css";
 import Card from "./Card";
 import Navbar from "../layout/Navbar";
 import Company from "./../assets/Company.jpg"
+import OurTeam from "./OurTeam";
 
 const Home = () => {
   const [program, setProgram] = useState([]);
@@ -169,6 +170,8 @@ const Home = () => {
           </Link>
         </button>
       </div>
+
+      <OurTeam/>
     </>
   );
 };
