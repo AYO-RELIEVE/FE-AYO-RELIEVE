@@ -4,7 +4,7 @@ import Arya from "./../assets/team/Arya.png"
 import Ilham from "./../assets/team/Ilham.jpeg"
 import Zaki from "./../assets/team/Zaki.png"
 import Umar from "./../assets/team/Umar.png"
-import Dina from "./../assets/team/Dina.JPG"
+import Dina from "./../assets/team/Dina.png"
 import "./../assets/style.css";
 
 const OurTeam = () => {
