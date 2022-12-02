@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Together from "./../assets/Together-pana.svg";
-import { json, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./../assets/style.css";
 import swal from "sweetalert";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Navbar from '../layout/Navbar'
 
 const RegisterApplicant = () => {
@@ -13,7 +13,6 @@ const RegisterApplicant = () => {
   const [name, setName] = useState("");
   const [phone_number, setPhone_number] = useState("");
   let [gender, setGender] = useState("");
-  console.log('ini gender: ', gender)
   const [profession, setProfession] = useState("");
   const [photo, setPhoto] = useState("");
   const [date_of_birth, setDate_of_birth] = useState("");
@@ -25,7 +24,6 @@ const RegisterApplicant = () => {
   const [password, setPassword] = useState("");
   
   const handlePhoto = (e) => {
-    console.log("event :", e);
     setPhoto(e.target.files[0]);
   };
 
@@ -70,7 +68,6 @@ const RegisterApplicant = () => {
 
     axios(config)
     .then(function (response) {
-      console.log('respon register ', response);
       swal({
         title: "Register Berhasil!",
         icon: "success",
@@ -79,7 +76,6 @@ const RegisterApplicant = () => {
       navigate('/login')
     })
     .catch(function (error) {
-      console.log('respon error ', error);
       swal({
         title: "Register Gagal!",
         text: error.response.data.message[0].message,
@@ -105,7 +101,7 @@ const RegisterApplicant = () => {
             <img src={Together} className="imageRegister img-login mx-auto" alt="" />
             <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
             <div className="w-100 px-5">
-              {/* /// Nama Lengkap //// */}
+              {/* Nama Lengkap */}
               <div className="mb-3">
                 <label
                   htmlFor="exampleInputEmail1"

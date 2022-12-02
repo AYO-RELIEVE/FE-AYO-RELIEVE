@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import Together from "./../assets/Together-pana.svg";
-import { json, Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./../assets/style.css";
 import swal from "sweetalert";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Navbar from '../layout/Navbar'
 
 const CreateProgram = () => {
   const statusUser = localStorage.getItem("statusUser")
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -83,7 +80,7 @@ const CreateProgram = () => {
             </h1>
           </div>
         }
-        <div className="row">
+        <div className="row mt-4">
           <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
             {/* <img src={Together} className="w-50" alt="" /> */}
             <h3 className="fw-bold mb-3 d-none txt">Daftar</h3>
@@ -210,7 +207,7 @@ const CreateProgram = () => {
                   required
                 />
               </div>
-              <Link to="/organization" className="btn btn-primary button">Cancel</Link>
+              <Link to="/organization" className="btn btn-secondary">Cancel</Link>
               <button className="btn btn-primary button mx-md-2 my-3 my-md-0" onClick={createPrograms}>Buat Program</button>
             </div>
           </div>

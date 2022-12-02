@@ -9,7 +9,6 @@ import { BiArrowBack } from "react-icons/bi";
 const DetailApplicant = () => {
 
     const params = useParams()
-    const navigate = useNavigate()
     const [program, setProgram] = useState(null)
     const [applyers, setApplyers] = useState([])
       
@@ -30,7 +29,6 @@ const DetailApplicant = () => {
             })
             .then((res) => {
                 setApplyers(res.data.data);
-                console.log('ini res: ', res)
             })
             .catch((err) => {
                 console.log(err);
@@ -46,7 +44,6 @@ const DetailApplicant = () => {
             })
             .then((res) => {
                 setApplyers(res.data.data);
-                console.log('ini res: ', res)
             })
             .catch((err) => {
                 console.log(err);
@@ -64,7 +61,6 @@ const DetailApplicant = () => {
           
         axios(config)
         .then(function (response) {
-              console.log('respon approff: ', response);
               swal({
                 title: "User telah di approve!",
                 icon: "success",
@@ -73,7 +69,6 @@ const DetailApplicant = () => {
               window.location.reload()
         })
         .catch(function (error) {
-            console.log('error approff: ', error);
             swal({
                 title: "User gagal di approve!",
                 icon: "error",
@@ -93,7 +88,6 @@ const DetailApplicant = () => {
           
         axios(config)
         .then(function (response) {
-              console.log('respon reject: ', response);
               swal({
                 title: "User telah di reject!",
                 icon: "success",
@@ -102,7 +96,6 @@ const DetailApplicant = () => {
               window.location.reload()
         })
         .catch(function (error) {
-            console.log('error reject: ', error);
             swal({
                 title: "User gagal di reject!",
                 icon: "error",
@@ -110,9 +103,6 @@ const DetailApplicant = () => {
             });
         });
     }
-    
-    console.log(program)
-    console.log('ini applyers: ', applyers)
     
     return (
         <>
@@ -139,15 +129,15 @@ const DetailApplicant = () => {
                                 <h1 className="fw-bold">
                                     {program.title}
                                 </h1>
-                                <div className="d-flex">
+                                <div className="d-flex align-items-center">
                                     <img
                                         src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
-                                    <p className="my-3 text-start">
-                                        {program.title}
-                                    </p>
+                                    <h5 className="my-3 text-start">
+                                        {program.organization.name}
+                                    </h5>
                                 </div>
                                 <div className="d-flex detailApplicantSpace">
                                     <h6 className="fw-bold">
@@ -163,7 +153,7 @@ const DetailApplicant = () => {
                             className="container d-flex flex-column"
                         >
                             <div className="order-2 order-md-1">
-                                <h4 className="fw-bold">
+                                <h4 className="fw-bold mb-4">
                                     List Pendaftar
                                 </h4>
                                 <table className="table table-striped table-bordered">

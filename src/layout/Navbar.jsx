@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Icon from "../assets/Icon.png";
 import Company from "./../assets/Company.jpg"
 import ProfileMan from "./../assets/ProfileMan.jpg"
 import "./../assets/style.css";
@@ -28,9 +27,6 @@ const Navbar = () => {
           });
           
   }, []);
-
-  console.log('ini profL ', profile)
-  console.log('status userz: ', statusUser)
 
   return (
     <nav className="navbar navbar-expand-lg avbar-light shadow-sm px-3">

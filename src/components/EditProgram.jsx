@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Together from "./../assets/Together-pana.svg";
-import { json, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./../assets/style.css";
 import swal from "sweetalert";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import Navbar from '../layout/Navbar'
 
 const EditProgram = () => {
@@ -18,7 +17,6 @@ const EditProgram = () => {
   const [description, setDescription] = useState("");
   const [rules, setRules] = useState("");
   const [image, setImage] = useState("");
-  console.log('ini image: ', image)
   const [qouta, setQouta] = useState();
   const [end_date, setEndDate] = useState("");
   const [announcement_date, setAnnouncementDate] = useState("");
@@ -40,11 +38,9 @@ const EditProgram = () => {
       .catch((err) => {
           console.log(err)
       });
-      console.log('useeffect JALAN')
   }, []);
 
   const handleImage = (e) => {
-    console.log("event :", e);
     setImage(e.target.files[0]);
   };
 
@@ -70,7 +66,6 @@ const EditProgram = () => {
     
     axios(config)
     .then(function (response) {
-      console.log('ini respon edit: ', response);
       swal({
         title: "Update program berhasil!",
         icon: "success",
@@ -82,7 +77,6 @@ const EditProgram = () => {
       console.log('ini error edit: ', error);
     });
   };
-  console.log('ini progs: ', program)
 
   return (
     <>
@@ -108,10 +102,9 @@ const EditProgram = () => {
         }
         <div className="row">
           <div className="container d-flex flex-column justify-content-center align-items-center flex-sm-row">
-            {/* <img src={Together} className="w-50" alt="" /> */}
             <h3 className="fw-bold mb-3 d-none txt">Edit Program</h3>
             <div className="w-100 px-5">
-              {/* /// Nama Program //// */}
+              {/* Nama Program */}
               <div className="mb-3">
                 <label
                   htmlFor="exampleInputEmail1"
@@ -231,7 +224,7 @@ const EditProgram = () => {
                   required
                 />
               </div>
-              <Link to={`/detailprogramorganization/${program.id}`} className="btn btn-primary button">Cancel</Link>
+              <Link to={`/detailprogramorganization/${program.id}`} className="btn btn-secondary">Cancel</Link>
               <button className="btn btn-primary button mx-md-2 my-3 my-md-0" onClick={updatePrograms}>Update Program</button>
             </div>
           </div>

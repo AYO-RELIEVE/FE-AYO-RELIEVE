@@ -20,7 +20,6 @@ const RegisterOrganization = () => {
   const [media_social, setMedia_social] = useState("");
 
   const handlePhoto = (e) => {
-    console.log("event :", e);
     setPhoto(e.target.files[0]);
   };
 
@@ -48,7 +47,6 @@ const RegisterOrganization = () => {
 
     axios(config)
     .then(function (response) {
-      console.log('respon register ', response);
       swal({
         title: "Register Berhasil!",
         icon: "success",
@@ -57,7 +55,6 @@ const RegisterOrganization = () => {
       navigate('/login')
     })
     .catch(function (error) {
-      console.log('respon error ', error);
       swal({
         title: "Register Gagal!",
         text: error.response.data.message[0].message,
@@ -66,6 +63,7 @@ const RegisterOrganization = () => {
       });
     });
   }
+  
   return (
     <section>
       <Navbar/>

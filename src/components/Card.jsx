@@ -1,25 +1,49 @@
 import { Link } from "react-router-dom";
+import Together from "./../assets/Together-pana.svg";
+import Company from "./../assets/Company.jpg"
 
 const Card = (props) => {
   return (
     <>
-      {/* <div className="card" style={{ width: "22rem" }}>
+      <div className="card-container">
         <img
-          src={props.poster}
+          src={props.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${props.thumbnail}`}
           alt=""
           className="card-img-top"
         />
-        <div className="card-body d-flex flex-column gap-2">
-          <h5 className="card-title">{props.name}</h5>
-          <div className="d-flex align-items-center justify-content-between gap-2">
-            <div className="d-flex align-items-center gap-2">
-              <img src={props.partnerLogo} alt={props.partnerName} className="image-pt" />
-              <div className="">{props.partnerName}</div>
-            </div>
-            <Link to={`/detailprogram/${props.idProgram}`}>Detail</Link>
+      </div>
+      <div className="card-body d-flex flex-column gap-2">
+        <h5 className="card-title">{props.title}</h5>
+        <div className="d-flex align-items-center justify-content-between gap-2">
+          <div className="d-flex align-items-center gap-2">
+            <img 
+              src={props.photo ? `https://ayo-relieve.osorateam.com/${props.photo}` : Company}
+              className="imgOrganization" 
+            />
+            <div className="">{props.name}</div>
           </div>
+          {
+            (props.status == 'organization') &&
+              <Link
+                  style={{ textDecoration: 'none' }} 
+                  to={localStorage.getItem('Email') ? `/detailprogramorganization/${props.id}` : '/login'}
+                  className="buttonDetailHome"
+              >
+                  Detail
+              </Link>
+          }
+          {
+            (props.status != 'organization') &&
+              <Link 
+                style={{ textDecoration: 'none' }}
+                to={localStorage.getItem('Email') ? `/detailprogram/${props.id}` : '/login'}
+                className="buttonDetailHome"
+              >
+                Detail
+              </Link>
+          }
         </div>
-      </div> */}
+      </div>
     </>
   );
 };

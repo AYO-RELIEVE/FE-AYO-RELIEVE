@@ -10,7 +10,6 @@ import Company from "./../assets/Company.jpg"
 const DetailProgram = () => {
 
     const params = useParams()
-    const navigate = useNavigate()
     const [program, setProgram] = useState(null)
       
     useEffect(() => {
@@ -24,7 +23,6 @@ const DetailProgram = () => {
           axios(config)
               .then((res) => {
                   setProgram(res.data.data);
-                  console.log('ini res baru: ', res)
               })
               .catch((err) => {
                   console.log(err)
@@ -45,7 +43,6 @@ const DetailProgram = () => {
         
         axios(config)
         .then(function (response) {
-            console.log(response)
             if (response.status == 200){ 
                 swal({
                   title: "Anda berhasil mendaftar!",
@@ -56,7 +53,6 @@ const DetailProgram = () => {
             window.location.reload()
         })
         .catch((error) => {
-            console.log('message eroor: ', error)
             if (error.response.data.message == "You have already applied for this program"){
                 swal({
                   title: "Anda telah mendaftar program ini.",
@@ -92,15 +88,15 @@ const DetailProgram = () => {
                                 <h1 className="fw-bold">
                                     {program.title}
                                 </h1>
-                                <div className="d-flex">
+                                <div className="d-flex align-items-center">
                                     <img
                                         src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
-                                    <p className="my-3 text-start">
-                                        {program.title}
-                                    </p>
+                                    <h5 className="my-3 text-start">
+                                        {program.organization.name}
+                                    </h5>
                                 </div>
                                 <div className="d-flex">
                                     <h6 className="fw-bold">
@@ -168,6 +164,14 @@ const DetailProgram = () => {
                                 </h4>
                                 <p className="my-3 text-start">
                                     {program.qouta} Orang
+                                </p>
+                            </div>
+                            <div className="order-2 order-md-1">
+                                <h4 className="fw-bold">
+                                    Syarat dan Ketentuan
+                                </h4>
+                                <p className="my-3 text-start">
+                                    {program.rules}
                                 </p>
                             </div>
                         </div>
