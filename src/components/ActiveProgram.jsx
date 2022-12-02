@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar";
 import FindIcon from "./../assets/find-program.svg";
 import Together from "./../assets/Together-pana.svg";
+import Company from "./../assets/Company.jpg"
 
 const ActivepProgram = ()=> {
     const [program, setProgram] = useState([]);
@@ -57,11 +58,11 @@ const ActivepProgram = ()=> {
               <h6 className="p-0 m-0">{program.title}</h6>
               <div className="d-flex align-items-center gap-2 m-0 p-0">
                 <img
-                  src="https://logos-download.com/wp-content/uploads/2016/03/Unilever_logotype_emblem_logo.png"
+                  src={program.organization.photo != null ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
                   className="img-pt d-block m-0 p-0"
                 />
                 <div className="pt-3 m-0">
-                  <p className="">PT Unilever</p>
+                  <p className="">{program.organization.name}</p>
                 </div>
               </div>
               <p className="status-seleksi-approve text-white text-center d-flex align-content-center justify-content-center">

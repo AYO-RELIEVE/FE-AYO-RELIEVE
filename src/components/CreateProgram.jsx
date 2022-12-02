@@ -211,7 +211,7 @@ const CreateProgram = () => {
                 />
               </div>
               <Link to="/organization" className="btn btn-primary button">Cancel</Link>
-              <button className="btn btn-primary button mx-2" onClick={createPrograms}>Buat Program</button>
+              <button className="btn btn-primary button mx-md-2 my-3 my-md-0" onClick={createPrograms}>Buat Program</button>
             </div>
           </div>
         </div>
