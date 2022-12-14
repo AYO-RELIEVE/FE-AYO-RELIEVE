@@ -15,7 +15,7 @@ const DetailProgram = () => {
     useEffect(() => {
         var config = {
             method: 'get',
-            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}`,
+            url: `https://ayo-relieve.kattohair.com/api/programs/${params.id}`,
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -39,7 +39,7 @@ const DetailProgram = () => {
 
         var config = {
             method: 'post',
-            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/apply`,
+            url: `https://ayo-relieve.kattohair.com/api/programs/${params.id}/apply`,
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
@@ -83,7 +83,7 @@ const DetailProgram = () => {
                         >
                             <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
-                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.kattohair.com/${program.thumbnail}`}
                                     className="imageDetail img-fluid col-2 order-1 order-md-1 mx-md-0 rounded"
                                     alt="together-pana"
                                 />
@@ -94,7 +94,7 @@ const DetailProgram = () => {
                                 </h1>
                                 <div className="d-flex align-items-center">
                                     <img
-                                        src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
+                                        src={program.organization.photo ? `https://ayo-relieve.kattohair.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />

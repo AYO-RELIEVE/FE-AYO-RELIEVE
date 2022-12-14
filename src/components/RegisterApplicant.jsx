@@ -59,7 +59,7 @@ const RegisterApplicant = () => {
 
     var config = {
       method: 'post',
-      url: 'https://ayo-relieve.osorateam.com/api/auth/register',
+      url: 'https://ayo-relieve.kattohair.com/api/auth/register',
       headers: { 
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       },

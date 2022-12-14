@@ -11,7 +11,7 @@ const ActivepProgram = ()=> {
 
   useEffect(() => {
     axios
-      .get(`https://ayo-relieve.osorateam.com/api/programs/my-programs`, {
+      .get(`https://ayo-relieve.kattohair.com/api/programs/my-programs`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

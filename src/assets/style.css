@@ -488,3 +488,30 @@ footer>* {
     grid-template-columns: repeat(6, auto);
   }  
 }
+
+.containerDisabilitas{
+  background-color: #12C924;
+  /* width: fit-content; */
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+}
+
+.disableContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 769px) {
+  .disableContainer{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .containerDisabilitas{
+    margin-left: 5px;
+  }
+}

@@ -14,7 +14,7 @@ const DetailApplicant = () => {
       
     useEffect(() => {
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/programs/${params.id}`)
+            .get(`https://ayo-relieve.kattohair.com/api/programs/${params.id}`)
             .then((res) => {
                 setProgram(res.data.data);
             })
@@ -22,7 +22,7 @@ const DetailApplicant = () => {
                 console.log(err)
             });
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+            .get(`https://ayo-relieve.kattohair.com/api/organizations/programs/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -41,7 +41,7 @@ const DetailApplicant = () => {
       
     useEffect(() => {
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/organizations/programs/${params.id}`, {
+            .get(`https://ayo-relieve.kattohair.com/api/organizations/programs/${params.id}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -54,10 +54,13 @@ const DetailApplicant = () => {
             });
     }, []);
 
+    console.log(program)
+    console.log(applyers)
+
     const handleApprove = (id) => {
         var config = {
             method: 'put',
-            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/approve/${id}`,
+            url: `https://ayo-relieve.kattohair.com/api/programs/${params.id}/approve/${id}`,
             headers: { 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -84,7 +87,7 @@ const DetailApplicant = () => {
     const handleReject = (id) => {
         var config = {
             method: 'put',
-            url: `https://ayo-relieve.osorateam.com/api/programs/${params.id}/reject/${id}`,
+            url: `https://ayo-relieve.kattohair.com/api/programs/${params.id}/reject/${id}`,
             headers: { 
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -124,7 +127,7 @@ const DetailApplicant = () => {
                         >
                             <div className="imageDetailContainer w-100 w-lg-50">
                                 <img
-                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${program.thumbnail}`}
+                                    src={program.thumbnail == null ? Together : `https://ayo-relieve.kattohair.com/${program.thumbnail}`}
                                     className="imageDetail img-fluid col-2 order-1 order-md-1 mx-md-0 rounded"
                                     alt="together-pana"
                                 />
@@ -135,7 +138,7 @@ const DetailApplicant = () => {
                                 </h1>
                                 <div className="d-flex align-items-center">
                                     <img
-                                        src={program.organization.photo ? `https://ayo-relieve.osorateam.com/${program.organization.photo}` : Company}
+                                        src={program.organization.photo ? `https://ayo-relieve.kattohair.com/${program.organization.photo}` : Company}
                                         className="my-3 text-start campaign-logo"
                                         alt="logo"
                                     />
@@ -180,7 +183,20 @@ const DetailApplicant = () => {
                                                                     {index+1}
                                                                 </th>
                                                                 <td>
-                                                                    {applicants.name}
+                                                                    <div className='disableContainer'>
+                                                                        <div>
+                                                                            {applicants.name}
+                                                                        </div>
+                                                                        {
+                                                                            applicants.user_applicant_detail.disability ? 
+                                                                            <div className='containerDisabilitas'>
+                                                                                Penyandang Disabilitas
+                                                                            </div>
+                                                                            : 
+                                                                            <>
+                                                                            </>
+                                                                        }
+                                                                    </div>
                                                                 </td>
                                                                 <td>
                                                                     {applicants.Program_Users.status}

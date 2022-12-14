@@ -14,7 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
       axios
-          .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
+          .get(`https://ayo-relieve.kattohair.com/api/auth/me`, {
               headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
@@ -72,7 +72,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Company } alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.kattohair.com/${profile.photo}` : Company } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">
@@ -102,7 +102,7 @@ const Navbar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : ProfileMan } alt="..." className="profileImage" />{" "}
+                    <img src={profile.photo ? `https://ayo-relieve.kattohair.com/${profile.photo}` : ProfileMan } alt="..." className="profileImage" />{" "}
                   </a>
                   <ul className="dropdown-menu">
                     <li className="dropdown-item">

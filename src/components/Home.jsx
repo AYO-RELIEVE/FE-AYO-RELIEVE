@@ -16,7 +16,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ayo-relieve.osorateam.com/api/programs`, {})
+      .get(`https://ayo-relieve.kattohair.com/api/programs`, {})
       .then((res) => {
         setProgram(res.data.data);
       })
@@ -24,7 +24,7 @@ const Home = () => {
         console.log(err);
       });
     axios
-      .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
+      .get(`https://ayo-relieve.kattohair.com/api/auth/me`, {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
         },

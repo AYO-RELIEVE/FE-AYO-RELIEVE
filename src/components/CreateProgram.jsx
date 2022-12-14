@@ -43,7 +43,7 @@ const CreateProgram = () => {
 
     var config = {
       method: 'post',
-      url: 'https://ayo-relieve.osorateam.com/api/programs',
+      url: 'https://ayo-relieve.kattohair.com/api/programs',
       headers: { 
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
       },

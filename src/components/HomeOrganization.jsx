@@ -17,7 +17,7 @@ const HomeOrganization = () => {
 
     useEffect(() => {
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/organizations/programs`, {
+            .get(`https://ayo-relieve.kattohair.com/api/organizations/programs`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -29,7 +29,7 @@ const HomeOrganization = () => {
                 console.log(err);
             });
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
+            .get(`https://ayo-relieve.kattohair.com/api/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },

@@ -11,7 +11,7 @@ const StatusProgram = (props) => {
         <div className="flex-shrink-1 w-75">
         <img
             className="w-100"
-            src={props.thumbnail == null ? Together : `https://ayo-relieve.osorateam.com/${props.thumbnail}`}
+            src={props.thumbnail == null ? Together : `https://ayo-relieve.kattohair.com/${props.thumbnail}`}
             alt={props.title}
         />
         </div>
@@ -19,7 +19,7 @@ const StatusProgram = (props) => {
         <h6 className="p-0 m-0">{props.title}</h6>
         <div className="d-flex align-items-center gap-2 m-0 p-0">
             <img
-            src={props.photo != null ? `https://ayo-relieve.osorateam.com/${props.photo}` : Company}
+            src={props.photo != null ? `https://ayo-relieve.kattohair.com/${props.photo}` : Company}
             className="imgOrganization d-block m-0 p-0"
             />
             <div className="pt-3 m-0">

@@ -18,7 +18,7 @@ const HalamanProfile = () => {
 
     useEffect(() => {
         axios
-            .get(`https://ayo-relieve.osorateam.com/api/auth/me`, {
+            .get(`https://ayo-relieve.kattohair.com/api/auth/me`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 },
@@ -45,14 +45,14 @@ const HalamanProfile = () => {
                     <div className="d-flex flex-column justify-content-center w-100 align-items-center mb-2 ">
                         {
                             (profile.status == 'organization') &&
-                            <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Company} alt="icon-profile" className="profilePicture"/>
+                            <img src={profile.photo ? `https://ayo-relieve.kattohair.com/${profile.photo}` : Company} alt="icon-profile" className="profilePicture"/>
                         }
                         {
                             (profile.status != 'organization') &&
                             <>
                                 {
                                     (profile.photo != null) &&
-                                    <img src={profile.photo ? `https://ayo-relieve.osorateam.com/${profile.photo}` : Company} alt="icon-profile" className="profilePicture"/>
+                                    <img src={profile.photo ? `https://ayo-relieve.kattohair.com/${profile.photo}` : Company} alt="icon-profile" className="profilePicture"/>
                                 }
                                 {
                                     (profile.photo == null) &&
